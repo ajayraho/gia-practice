@@ -1124,7 +1124,7 @@ body{margin:0;min-height:100vh;}
 #view-history .chart-tip{
   position:fixed;
   display:none;
-  pointer-events:none;
+  pointer-events:auto;
   z-index:50;
   background:var(--ink);
   color:#fff;
@@ -1143,6 +1143,15 @@ body{margin:0;min-height:100vh;}
 #view-history .chart-tip .ct-incorrect{background:#ef7a7a;}
 #view-history .chart-tip .ct-sep{border-top:1px solid rgba(255,255,255,.2);margin:6px 0 4px;}
 #view-history .chart-tip .ct-sub{color:rgba(255,255,255,.72);font-size:11px;}
+#view-history .chart-tip .ct-link{
+  display:inline-block;
+  margin-top:2px;
+  color:#fff;
+  font-weight:700;
+  text-decoration:underline;
+  text-underline-offset:2px;
+  cursor:pointer;
+}
 
 #view-history .empty-note{
   border:1px solid var(--border);
@@ -1173,6 +1182,104 @@ body{margin:0;min-height:100vh;}
   cursor:pointer;
 }
 #view-history button.ghost:hover{border-color:var(--border-strong);}
+
+/* detailed report modal */
+#view-history .report-overlay{
+  position:fixed;inset:0;
+  background:rgba(20,22,26,.45);
+  display:none;
+  align-items:center;justify-content:center;
+  padding:20px;
+  z-index:100;
+}
+#view-history .report-modal{
+  background:var(--bg);
+  border-radius:16px;
+  width:100%;
+  max-width:520px;
+  max-height:82vh;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.45);
+}
+#view-history .report-head{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:12px;
+  padding:18px 20px 14px;
+  border-bottom:1px solid var(--border);
+}
+#view-history .report-title{font-size:16.5px;font-weight:700;letter-spacing:-.01em;}
+#view-history .report-sub{font-size:12.5px;color:var(--muted);margin-top:3px;font-variant-numeric:tabular-nums;}
+#view-history .report-close{
+  flex:none;
+  width:30px;height:30px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:none;
+  font-size:17px;
+  line-height:1;
+  cursor:pointer;
+  color:var(--muted);
+  display:flex;align-items:center;justify-content:center;
+}
+#view-history .report-close:hover{border-color:var(--border-strong);color:var(--ink);}
+
+#view-history .report-list{
+  overflow-y:auto;
+  padding:14px 20px;
+  display:flex;flex-direction:column;gap:9px;
+  flex:1;
+}
+#view-history .report-item{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px 14px;
+  background:var(--bg);
+}
+#view-history .report-item.ri-correct{background:rgba(28,77,52,.07);border-color:rgba(28,77,52,.28);}
+#view-history .report-item.ri-incorrect{background:rgba(92,32,32,.07);border-color:rgba(92,32,32,.28);}
+#view-history .ri-source{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;margin-bottom:6px;}
+#view-history .ri-stmt{font-size:13px;color:var(--muted);margin-bottom:3px;}
+#view-history .ri-q{font-size:14px;font-weight:600;margin-bottom:8px;}
+#view-history .ri-ans{font-size:12.5px;display:flex;gap:14px;flex-wrap:wrap;}
+#view-history .ri-ans .you{color:var(--ink);}
+#view-history .ri-ans .correct-ans{color:var(--ink);font-weight:700;}
+#view-history .ri-cols{display:flex;flex-direction:column;gap:3px;margin-bottom:8px;}
+#view-history .ri-cols .mini-row{display:flex;gap:10px;font-size:15px;}
+#view-history .ri-cols .mini-row span{width:16px;text-align:center;}
+#view-history .ri-cols .mini-row.upper span{font-weight:600;}
+#view-history .ri-nums{display:flex;gap:8px;font-weight:700;font-size:14.5px;font-variant-numeric:tabular-nums;margin-bottom:8px;}
+#view-history .ri-boxes{display:flex;gap:8px;margin-bottom:8px;}
+#view-history .ri-boxes .mini-box{
+  width:40px;height:56px;
+  border:1px solid var(--border);
+  border-radius:7px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  background:var(--bg);
+}
+#view-history .ri-boxes .mini-box .glyph{font-size:15px;font-weight:600;}
+#view-history .ri-words{font-size:13.5px;margin-bottom:8px;color:var(--muted);}
+#view-history .ri-words b{color:var(--ink);}
+
+#view-history .report-filters{
+  display:flex;gap:8px;
+  padding:12px 20px 16px;
+  border-top:1px solid var(--border);
+  flex:none;
+}
+#view-history .rf-btn{
+  flex:1;
+  border:1px solid var(--border);
+  background:none;
+  border-radius:9px;
+  padding:9px 10px;
+  font-size:12.5px;
+  font-weight:600;
+  color:var(--muted);
+  cursor:pointer;
+}
+#view-history .rf-btn.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+#view-history .rf-btn:hover:not(.active){border-color:var(--border-strong);color:var(--ink);}
 
 </style>
 </head>
@@ -1577,7 +1684,25 @@ body{margin:0;min-height:100vh;}
   <button class="ghost" id="hist-clearBtn" style="display:none;">Clear history</button>
 </div>
 
-<div class="chart-tip" id="hist-chartTip"></div>
+<div class="chart-tip" id="hist-chartTip" onmouseenter="cancelHideTip()" onmouseleave="hideTip()"></div>
+
+<div class="report-overlay" id="hist-reportOverlay" onclick="if(event.target===this) closeReportModal();">
+  <div class="report-modal">
+    <div class="report-head">
+      <div>
+        <div class="report-title" id="hist-reportTitle"></div>
+        <div class="report-sub" id="hist-reportSub"></div>
+      </div>
+      <button class="report-close" id="hist-reportCloseBtn" aria-label="Close" onclick="closeReportModal()">&times;</button>
+    </div>
+    <div class="report-list" id="hist-reportList"></div>
+    <div class="report-filters">
+      <button class="rf-btn active" data-filter="all" onclick="setReportFilter('all')">All</button>
+      <button class="rf-btn" data-filter="correct" onclick="setReportFilter('correct')">Correct</button>
+      <button class="rf-btn" data-filter="incorrect" onclick="setReportFilter('incorrect')">Incorrect</button>
+    </div>
+  </div>
+</div>
 </div>
 
 <script>
@@ -1640,9 +1765,9 @@ function advanceFullTest(){
   }, 60);
 }
 
-window.__onTestFinish = function(testName, score, total){
+window.__onTestFinish = function(testName, score, total, questions){
   if(!inFullTest) return;
-  fullTestResults.push({test:testName, score:score, total:total});
+  fullTestResults.push({test:testName, score:score, total:total, questions:questions||[]});
   var isLast = fullTestQueue.length === 0;
   showFullTestBanner(fullTestResults.length, isLast, isLast ? '' : testNameForView(fullTestQueue[0]));
 };
@@ -1651,15 +1776,14 @@ function showFullTestBanner(completedCount, isLast, nextName){
   removeFullTestOverlay();
   var host = activeViewEl();
   if(!host){ advanceFullTest(); return; }
-  var seconds = 3;
   var overlay = document.createElement('div');
   overlay.id = 'ft-overlay';
   overlay.className = 'ft-overlay';
   overlay.innerHTML =
     '<div class="ft-card">' +
       '<div class="ft-title">Section ' + completedCount + ' of 5 complete</div>' +
-      '<div class="ft-sub">' + (isLast ? 'Finishing up\u2026' : ('Next: ' + nextName + ' \u2014 continuing in <span id="ft-count">' + seconds + '</span>s')) + '</div>' +
-      (isLast ? '' : '<button class="ft-btn" id="ft-continue-btn">Continue now</button>') +
+      '<div class="ft-sub">' + (isLast ? 'Finishing up\u2026' : ('Next up: ' + nextName + '. Take a breather -- start whenever you\u2019re ready.')) + '</div>' +
+      (isLast ? '' : '<button class="ft-btn" id="ft-continue-btn">Continue</button>') +
     '</div>';
   host.appendChild(overlay);
 
@@ -1672,16 +1796,6 @@ function showFullTestBanner(completedCount, isLast, nextName){
     removeFullTestOverlay();
     advanceFullTest();
   });
-
-  fullTestTimer = setInterval(function(){
-    seconds--;
-    var countEl = document.getElementById('ft-count');
-    if(countEl) countEl.textContent = seconds;
-    if(seconds <= 0){
-      removeFullTestOverlay();
-      advanceFullTest();
-    }
-  }, 1000);
 }
 
 function showFullTestSummary(){
@@ -1709,6 +1823,15 @@ function showFullTestSummary(){
 
   try{
     var arr = JSON.parse(localStorage.getItem('giaPracticeResults') || '[]');
+    var flatQuestions = [];
+    fullTestResults.forEach(function(r){
+      (r.questions || []).forEach(function(q){
+        var tagged = {};
+        for(var k in q){ tagged[k] = q[k]; }
+        tagged.sourceTest = r.test;
+        flatQuestions.push(tagged);
+      });
+    });
     arr.push({
       test: 'Full Test',
       date: new Date().toISOString(),
@@ -1716,7 +1839,8 @@ function showFullTestSummary(){
       total: totalQ,
       pct: pct,
       session: fullTestSessionId,
-      breakdown: fullTestResults.slice()
+      breakdown: fullTestResults.map(function(r){ return {test:r.test, score:r.score, total:r.total}; }),
+      questions: flatQuestions
     });
     while(arr.length > 200) arr.shift();
     localStorage.setItem('giaPracticeResults', JSON.stringify(arr));
@@ -1874,7 +1998,7 @@ function saveResult(){
   if(total===0) return;
   try{
     const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
-    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null)});
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null), questions:history.slice()});
     while(arr.length>200) arr.shift();
     localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
   }catch(e){ /* localStorage unavailable -- fail silently */ }
@@ -1996,7 +2120,7 @@ function finishRound(){
   }
 
   showScreen('report');
-  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total);
+  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total, history);
 }
 
 el('pd-startBtn').addEventListener('click', ()=>{
@@ -2051,7 +2175,7 @@ function saveResult(){
   if(total===0) return;
   try{
     const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
-    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null)});
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null), questions:history.slice()});
     while(arr.length>200) arr.shift();
     localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
   }catch(e){ /* localStorage unavailable -- fail silently */ }
@@ -2188,7 +2312,7 @@ function finishRound(){
   }
 
   showScreen('report');
-  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total);
+  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total, history);
 }
 
 el('cm-startBtn').addEventListener('click', ()=>{
@@ -2247,7 +2371,7 @@ function saveResult(){
   if(total===0) return;
   try{
     const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
-    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null)});
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null), questions:history.slice()});
     while(arr.length>200) arr.shift();
     localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
   }catch(e){ /* localStorage unavailable -- fail silently */ }
@@ -2368,7 +2492,7 @@ function finishRound(){
   }
 
   showScreen('report');
-  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total);
+  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total, history);
 }
 
 el('fo-startBtn').addEventListener('click', ()=>{
@@ -2444,7 +2568,7 @@ function saveResult(){
   if(total===0) return;
   try{
     const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
-    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null)});
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null), questions:history.slice()});
     while(arr.length>200) arr.shift();
     localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
   }catch(e){ /* localStorage unavailable -- fail silently */ }
@@ -2578,7 +2702,7 @@ function finishRound(){
   }
 
   showScreen('report');
-  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total);
+  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total, history);
 }
 
 el('tt-startBtn').addEventListener('click', ()=>{
@@ -2698,7 +2822,7 @@ function saveResult(){
   if(total===0) return;
   try{
     const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
-    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null)});
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null), questions:history.slice()});
     while(arr.length>200) arr.shift();
     localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
   }catch(e){ /* localStorage unavailable -- fail silently */ }
@@ -2819,7 +2943,7 @@ function finishRound(){
   }
 
   showScreen('report');
-  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total);
+  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total, history);
 }
 
 el('oo-startBtn').addEventListener('click', ()=>{
@@ -2871,7 +2995,7 @@ function escHtml(s){
 let chartSeq = 0;
 
 // Hand-rolled SVG line chart: no charting library, keeps the app fully
-// offline and dependency-free. points: [{date, total, correct, incorrect, breakdown?}], oldest first.
+// offline and dependency-free. points: [{date, total, correct, incorrect, breakdown?, questions?, testName}], oldest first.
 function buildChart(points){
   const id = 'c' + (chartSeq++);
   const padL = 26, padR = 14, padT = 12, padB = 26;
@@ -2929,11 +3053,18 @@ function buildChart(points){
   return `<svg width="${totalW}" height="${totalH}" viewBox="0 0 ${totalW} ${totalH}" data-points="${dataAttr}">${gridlines}${lines}${dots}${dateLabels}${hits}</svg>`;
 }
 
+let currentTipPoint = null;
+let currentTipSvg = null;
+let hideTimer = null;
+
 function chartHover(evt, el){
+  clearTimeout(hideTimer);
   const svg = el.closest('svg');
   const idx = +el.getAttribute('data-idx');
   const points = JSON.parse(svg.getAttribute('data-points').replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&'));
   const p = points[idx];
+  currentTipPoint = p;
+  currentTipSvg = svg;
 
   svg.querySelectorAll('.cdot.hi').forEach(d => d.classList.remove('hi'));
   svg.querySelectorAll('.cdot[data-idx="' + idx + '"]').forEach(d => d.classList.add('hi'));
@@ -2944,6 +3075,9 @@ function chartHover(evt, el){
     `<div class="ct-row"><span class="ct-dot ct-incorrect"></span>Incorrect ${p.incorrect}</div>`;
   if(Array.isArray(p.breakdown) && p.breakdown.length){
     html += '<div class="ct-sep"></div>' + p.breakdown.map(b => `<div class="ct-row ct-sub">${b.test}: ${b.score}/${b.total}</div>`).join('');
+  }
+  if(Array.isArray(p.questions) && p.questions.length){
+    html += `<div class="ct-sep"></div><a href="#" class="ct-link" onclick="openReportFromTip(event)">View detailed report &rarr;</a>`;
   }
   const tip = document.getElementById('hist-chartTip');
   tip.innerHTML = html;
@@ -2956,8 +3090,15 @@ function chartMove(evt, el){
 }
 
 function chartUnhover(el){
-  const svg = el.closest('svg');
-  svg.querySelectorAll('.cdot.hi').forEach(d => d.classList.remove('hi'));
+  hideTimer = setTimeout(hideTip, 220);
+}
+
+function cancelHideTip(){
+  clearTimeout(hideTimer);
+}
+
+function hideTip(){
+  if(currentTipSvg){ currentTipSvg.querySelectorAll('.cdot.hi').forEach(d => d.classList.remove('hi')); }
   document.getElementById('hist-chartTip').style.display = 'none';
 }
 
@@ -2973,11 +3114,106 @@ function positionTip(evt, tip){
   tip.style.top = y + 'px';
 }
 
-// exposed for the inline onmouseenter/onmousemove/onmouseleave handlers on
-// the SVG hit-rects above, since this whole script runs inside an IIFE
+// ---------------- Detailed report modal ----------------
+let reportQuestions = [];
+let reportDefaultTest = '';
+let reportFilter = 'all';
+
+function glyphTransform(b){
+  const parts = [];
+  if(b.rotation) parts.push(`rotate(${b.rotation}deg)`);
+  if(b.mirrored) parts.push('scaleX(-1)');
+  return parts.join(' ');
+}
+
+function ansRow(q){
+  return `<div class="ri-ans"><span class="you">You said: ${escHtml(String(q.chosen))}</span><span class="correct-ans">Correct: ${escHtml(String(q.answer))}</span></div>`;
+}
+
+function renderQuestionBody(testName, q){
+  switch(testName){
+    case 'Polarity Drill':
+      return `<div class="ri-stmt">${escHtml(q.statement || '')}</div>` +
+             `<div class="ri-q">${escHtml(q.question || '')}</div>` +
+             ansRow(q);
+    case 'Column Match':
+      return `<div class="ri-cols">` +
+               `<div class="mini-row lower">${(q.lower || []).map(c => `<span>${escHtml(c)}</span>`).join('')}</div>` +
+               `<div class="mini-row upper">${(q.upper || []).map(c => `<span>${escHtml(c)}</span>`).join('')}</div>` +
+             `</div>` + ansRow(q);
+    case 'Furthest Out':
+      return `<div class="ri-nums">${(q.options || []).map(n => `<span>${n}</span>`).join('')}</div>` + ansRow(q);
+    case 'True Turn':
+      return `<div class="ri-boxes">${(q.boxes || []).map(b =>
+               `<div class="mini-box"><span class="glyph" style="transform:${glyphTransform(b)};">${escHtml(b.topLetter)}</span><span class="glyph">${escHtml(b.bottomLetter)}</span></div>`
+             ).join('')}</div>` + ansRow(q);
+    case 'Odd One Out':
+      return `<div class="ri-words">${(q.options || []).map(w => w === q.answer ? `<b>${escHtml(w)}</b>` : escHtml(w)).join(' · ')}</div>` + ansRow(q);
+    default:
+      return ansRow(q);
+  }
+}
+
+function renderReportList(){
+  const list = document.getElementById('hist-reportList');
+  if(!reportQuestions.length){
+    list.innerHTML = '<div class="empty-note">No question-by-question detail was saved for this attempt.</div>';
+    return;
+  }
+  const filtered = reportQuestions.filter(q => reportFilter === 'all' ? true : (reportFilter === 'correct' ? q.correct : !q.correct));
+  if(!filtered.length){
+    list.innerHTML = '<div class="empty-note">No questions in this filter.</div>';
+    return;
+  }
+  list.innerHTML = filtered.map(q => {
+    const testKey = q.sourceTest || reportDefaultTest;
+    const sourceTag = q.sourceTest ? `<div class="ri-source">${escHtml(q.sourceTest)}</div>` : '';
+    return `<div class="report-item ${q.correct ? 'ri-correct' : 'ri-incorrect'}">${sourceTag}${renderQuestionBody(testKey, q)}</div>`;
+  }).join('');
+}
+
+function openReportModal(point){
+  reportQuestions = Array.isArray(point.questions) ? point.questions : [];
+  reportDefaultTest = point.testName;
+  reportFilter = 'all';
+  document.getElementById('hist-reportTitle').textContent = point.testName;
+  document.getElementById('hist-reportSub').textContent = fmtDate(point.date) + ' · ' + point.correct + '/' + point.total + ' correct';
+  document.querySelectorAll('.rf-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-filter') === 'all'));
+  renderReportList();
+  document.getElementById('hist-reportOverlay').style.display = 'flex';
+}
+
+function openReportFromTip(evt){
+  evt.preventDefault();
+  if(!currentTipPoint) return;
+  hideTip();
+  openReportModal(currentTipPoint);
+}
+
+function closeReportModal(){
+  document.getElementById('hist-reportOverlay').style.display = 'none';
+}
+
+function setReportFilter(f){
+  reportFilter = f;
+  document.querySelectorAll('.rf-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-filter') === f));
+  renderReportList();
+}
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closeReportModal();
+});
+
+// exposed for the inline handlers above, since this whole script runs
+// inside an IIFE once merged into the single-page app
 window.chartHover = chartHover;
 window.chartMove = chartMove;
 window.chartUnhover = chartUnhover;
+window.cancelHideTip = cancelHideTip;
+window.hideTip = hideTip;
+window.openReportFromTip = openReportFromTip;
+window.closeReportModal = closeReportModal;
+window.setReportFilter = setReportFilter;
 
 function chartCard(name, runs){
   const attempts = runs.length;
@@ -2987,7 +3223,9 @@ function chartCard(name, runs){
     total: r.total,
     correct: r.score,
     incorrect: r.total - r.score,
-    breakdown: (r.test === FULL_TEST_NAME && Array.isArray(r.breakdown)) ? r.breakdown : undefined
+    breakdown: (r.test === FULL_TEST_NAME && Array.isArray(r.breakdown)) ? r.breakdown : undefined,
+    questions: Array.isArray(r.questions) ? r.questions : [],
+    testName: name
   }));
 
   return `
