@@ -24,6 +24,8 @@ body{margin:0;min-height:100vh;}
   --line-total:#14161a;
   --line-correct:#1c4d34;
   --line-incorrect:#5c2020;
+  --line-accuracy:#8a8d94;
+  --line-time:#2f6fbf;
 }
 
 .ft-overlay{
@@ -1120,6 +1122,8 @@ body{margin:0;min-height:100vh;}
 #view-history .cdot-total.hi{r:6.5px;}
 #view-history .cdot-correct, #view-history .cdot-incorrect{r:2.6px;}
 #view-history .cdot-correct.hi, #view-history .cdot-incorrect.hi{r:4.6px;}
+#view-history .cdot-accuracy, #view-history .cdot-time{r:2.2px;}
+#view-history .cdot-accuracy.hi, #view-history .cdot-time.hi{r:4.2px;}
 
 #view-history .chart-tip{
   position:fixed;
@@ -1141,6 +1145,8 @@ body{margin:0;min-height:100vh;}
 #view-history .chart-tip .ct-total{background:#c7c9cf;}
 #view-history .chart-tip .ct-correct{background:#5fd693;}
 #view-history .chart-tip .ct-incorrect{background:#ef7a7a;}
+#view-history .chart-tip .ct-accuracy{background:#b3b6bd;}
+#view-history .chart-tip .ct-time{background:#6fa4e0;}
 #view-history .chart-tip .ct-sep{border-top:1px solid rgba(255,255,255,.2);margin:6px 0 4px;}
 #view-history .chart-tip .ct-sub{color:rgba(255,255,255,.72);font-size:11px;}
 #view-history .chart-tip .ct-link{
@@ -1782,9 +1788,9 @@ function advanceFullTest(){
   }, 60);
 }
 
-window.__onTestFinish = function(testName, score, total, questions){
+window.__onTestFinish = function(testName, score, total, questions, elapsedSeconds){
   if(!inFullTest) return;
-  fullTestResults.push({test:testName, score:score, total:total, questions:questions||[]});
+  fullTestResults.push({test:testName, score:score, total:total, questions:questions||[], elapsedSeconds:elapsedSeconds||0});
   var isLast = fullTestQueue.length === 0;
   showFullTestBanner(fullTestResults.length, isLast, isLast ? '' : testNameForView(fullTestQueue[0]));
 };
@@ -1849,6 +1855,7 @@ function showFullTestSummary(){
         flatQuestions.push(tagged);
       });
     });
+    var totalElapsed = fullTestResults.reduce(function(a,r){ return a + (r.elapsedSeconds||0); }, 0);
     arr.push({
       test: 'Full Test',
       date: new Date().toISOString(),
@@ -1857,7 +1864,9 @@ function showFullTestSummary(){
       pct: pct,
       session: fullTestSessionId,
       breakdown: fullTestResults.map(function(r){ return {test:r.test, score:r.score, total:r.total}; }),
-      questions: flatQuestions
+      questions: flatQuestions,
+      elapsedSeconds: totalElapsed,
+      avgSeconds: totalQ ? totalElapsed/totalQ : 0
     });
     while(arr.length > 200) arr.shift();
     localStorage.setItem('giaPracticeResults', JSON.stringify(arr));
@@ -2015,7 +2024,8 @@ function saveResult(){
   if(total===0) return;
   try{
     const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
-    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null), questions:history.slice()});
+    const elapsedSeconds = Math.max(0, ROUND_SECONDS - timeLeft);
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null), questions:history.slice(), elapsedSeconds, avgSeconds:(total ? elapsedSeconds/total : 0)});
     while(arr.length>200) arr.shift();
     localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
   }catch(e){ /* localStorage unavailable -- fail silently */ }
@@ -2137,7 +2147,7 @@ function finishRound(){
   }
 
   showScreen('report');
-  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total, history);
+  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total, history, Math.max(0, ROUND_SECONDS - timeLeft));
 }
 
 el('pd-startBtn').addEventListener('click', ()=>{
@@ -2192,7 +2202,8 @@ function saveResult(){
   if(total===0) return;
   try{
     const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
-    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null), questions:history.slice()});
+    const elapsedSeconds = Math.max(0, ROUND_SECONDS - timeLeft);
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null), questions:history.slice(), elapsedSeconds, avgSeconds:(total ? elapsedSeconds/total : 0)});
     while(arr.length>200) arr.shift();
     localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
   }catch(e){ /* localStorage unavailable -- fail silently */ }
@@ -2329,7 +2340,7 @@ function finishRound(){
   }
 
   showScreen('report');
-  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total, history);
+  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total, history, Math.max(0, ROUND_SECONDS - timeLeft));
 }
 
 el('cm-startBtn').addEventListener('click', ()=>{
@@ -2388,7 +2399,8 @@ function saveResult(){
   if(total===0) return;
   try{
     const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
-    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null), questions:history.slice()});
+    const elapsedSeconds = Math.max(0, ROUND_SECONDS - timeLeft);
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null), questions:history.slice(), elapsedSeconds, avgSeconds:(total ? elapsedSeconds/total : 0)});
     while(arr.length>200) arr.shift();
     localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
   }catch(e){ /* localStorage unavailable -- fail silently */ }
@@ -2509,7 +2521,7 @@ function finishRound(){
   }
 
   showScreen('report');
-  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total, history);
+  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total, history, Math.max(0, ROUND_SECONDS - timeLeft));
 }
 
 el('fo-startBtn').addEventListener('click', ()=>{
@@ -2585,7 +2597,8 @@ function saveResult(){
   if(total===0) return;
   try{
     const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
-    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null), questions:history.slice()});
+    const elapsedSeconds = Math.max(0, ROUND_SECONDS - timeLeft);
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null), questions:history.slice(), elapsedSeconds, avgSeconds:(total ? elapsedSeconds/total : 0)});
     while(arr.length>200) arr.shift();
     localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
   }catch(e){ /* localStorage unavailable -- fail silently */ }
@@ -2719,7 +2732,7 @@ function finishRound(){
   }
 
   showScreen('report');
-  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total, history);
+  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total, history, Math.max(0, ROUND_SECONDS - timeLeft));
 }
 
 el('tt-startBtn').addEventListener('click', ()=>{
@@ -2839,7 +2852,8 @@ function saveResult(){
   if(total===0) return;
   try{
     const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
-    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null), questions:history.slice()});
+    const elapsedSeconds = Math.max(0, ROUND_SECONDS - timeLeft);
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null), questions:history.slice(), elapsedSeconds, avgSeconds:(total ? elapsedSeconds/total : 0)});
     while(arr.length>200) arr.shift();
     localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
   }catch(e){ /* localStorage unavailable -- fail silently */ }
@@ -2960,7 +2974,7 @@ function finishRound(){
   }
 
   showScreen('report');
-  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total, history);
+  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total, history, Math.max(0, ROUND_SECONDS - timeLeft));
 }
 
 el('oo-startBtn').addEventListener('click', ()=>{
@@ -3012,22 +3026,29 @@ function escHtml(s){
 let chartSeq = 0;
 
 // Hand-rolled SVG line chart: no charting library, keeps the app fully
-// offline and dependency-free. points: [{date, total, correct, incorrect, breakdown?, questions?, testName}], oldest first.
+// offline and dependency-free. points: [{date, total, correct, incorrect, accuracyPct,
+// avgSeconds, breakdown?, questions?, testName}], oldest first.
 function buildChart(points){
   const id = 'c' + (chartSeq++);
-  const padL = 26, padR = 14, padT = 12, padB = 26;
+  const padL = 26, padR = 30, padT = 12, padB = 26;
   const plotH = 116;
   const n = points.length;
   const spacing = n > 1 ? Math.max(46, Math.min(72, 420 / (n - 1))) : 0;
   const plotW = n > 1 ? spacing * (n - 1) : 60;
-  const totalW = Math.max(260, padL + padR + plotW);
+  const totalW = Math.max(280, padL + padR + plotW);
   const totalH = padT + plotH + padB;
 
   const maxVal = Math.max(1, ...points.map(p => p.total));
   const mid = Math.round(maxVal / 2);
 
+  // avg time per question gets its own implicit scale (there's no natural
+  // ceiling like accuracy's 0-100%), normalized onto the same 0-100 right
+  // axis as accuracy so it can share that axis without a third gridline set
+  const maxAvgSeconds = Math.max(1, ...points.map(p => p.avgSeconds || 0));
+
   function xAt(i){ return n > 1 ? padL + i * spacing : totalW / 2; }
   function yAt(v){ return padT + plotH - (v / maxVal) * plotH; }
+  function yAtPct(v){ return padT + plotH - (Math.max(0, Math.min(100, v)) / 100) * plotH; }
 
   const gridlines = [0, mid, maxVal].map(v => {
     const y = yAt(v);
@@ -3035,23 +3056,42 @@ function buildChart(points){
            `<text x="${padL - 6}" y="${y + 3.5}" font-size="9.5" text-anchor="end" fill="var(--muted)">${v}</text>`;
   }).join('');
 
-  function seriesLine(key, colorVar, width){
+  const rightAxisLabels = [0, 50, 100].map(v => {
+    const y = yAtPct(v);
+    return `<text x="${totalW - padR + 6}" y="${y + 3.5}" font-size="9" text-anchor="start" fill="var(--muted)">${v}%</text>`;
+  }).join('');
+
+  function seriesLine(key, colorVar, width, yFn, dash){
     if(n <= 1) return '';
-    const pts = points.map((p, i) => `${xAt(i)},${yAt(p[key])}`).join(' ');
-    return `<polyline points="${pts}" fill="none" stroke="${colorVar}" stroke-width="${width}" stroke-linejoin="round" stroke-linecap="round" />`;
+    const pts = points.map((p, i) => `${xAt(i)},${yFn(p[key])}`).join(' ');
+    const dashAttr = dash ? ` stroke-dasharray="${dash}"` : '';
+    return `<polyline points="${pts}" fill="none" stroke="${colorVar}" stroke-width="${width}" stroke-linejoin="round" stroke-linecap="round"${dashAttr} />`;
   }
 
-  function seriesDots(key, colorVar, cls){
+  function seriesDots(key, colorVar, cls, yFn){
     return points.map((p, i) => {
-      const x = xAt(i), y = yAt(p[key]);
+      const x = xAt(i), y = yFn(p[key]);
       return `<circle class="cdot ${cls}" data-idx="${i}" data-series="${key}" cx="${x}" cy="${y}" fill="${colorVar}" />`;
     }).join('');
   }
 
   // total attempted is the primary series (thicker line, bigger dots);
-  // correct/incorrect are thinner supporting series
-  const lines = seriesLine('correct', 'var(--line-correct)', 1.5) + seriesLine('incorrect', 'var(--line-incorrect)', 1.5) + seriesLine('total', 'var(--line-total)', 2.5);
-  const dots = seriesDots('correct', 'var(--line-correct)', 'cdot-correct') + seriesDots('incorrect', 'var(--line-incorrect)', 'cdot-incorrect') + seriesDots('total', 'var(--line-total)', 'cdot-total');
+  // correct/incorrect are thinner supporting series on the same count axis;
+  // accuracy (grey) and avg time per question (blue) are thin overlay lines
+  // on their own 0-100% right axis, exact values shown on hover
+  points.forEach(p => { p.avgSecondsNorm = ((p.avgSeconds || 0) / maxAvgSeconds) * 100; });
+
+  const lines = seriesLine('correct', 'var(--line-correct)', 1.5, yAt)
+    + seriesLine('incorrect', 'var(--line-incorrect)', 1.5, yAt)
+    + seriesLine('accuracyPct', 'var(--line-accuracy)', 1.2, yAtPct)
+    + seriesLine('avgSecondsNorm', 'var(--line-time)', 1.2, yAtPct, '3,3')
+    + seriesLine('total', 'var(--line-total)', 2.5, yAt);
+
+  const dots = seriesDots('correct', 'var(--line-correct)', 'cdot-correct', yAt)
+    + seriesDots('incorrect', 'var(--line-incorrect)', 'cdot-incorrect', yAt)
+    + seriesDots('accuracyPct', 'var(--line-accuracy)', 'cdot-accuracy', yAtPct)
+    + seriesDots('avgSecondsNorm', 'var(--line-time)', 'cdot-time', yAtPct)
+    + seriesDots('total', 'var(--line-total)', 'cdot-total', yAt);
 
   const dateLabels = points.map((p, i) => {
     const x = xAt(i);
@@ -3067,7 +3107,7 @@ function buildChart(points){
 
   const dataAttr = escHtml(JSON.stringify(points));
 
-  return `<svg width="${totalW}" height="${totalH}" viewBox="0 0 ${totalW} ${totalH}" data-points="${dataAttr}">${gridlines}${lines}${dots}${dateLabels}${hits}</svg>`;
+  return `<svg width="${totalW}" height="${totalH}" viewBox="0 0 ${totalW} ${totalH}" data-points="${dataAttr}">${gridlines}${rightAxisLabels}${lines}${dots}${dateLabels}${hits}</svg>`;
 }
 
 let currentTipPoint = null;
@@ -3089,7 +3129,9 @@ function chartHover(evt, el){
   let html = `<div class="ct-date">${fmtDate(p.date)}</div>` +
     `<div class="ct-row"><span class="ct-dot ct-total"></span>Total attempted ${p.total}</div>` +
     `<div class="ct-row"><span class="ct-dot ct-correct"></span>Correct ${p.correct}</div>` +
-    `<div class="ct-row"><span class="ct-dot ct-incorrect"></span>Incorrect ${p.incorrect}</div>`;
+    `<div class="ct-row"><span class="ct-dot ct-incorrect"></span>Incorrect ${p.incorrect}</div>` +
+    `<div class="ct-row"><span class="ct-dot ct-accuracy"></span>Accuracy ${p.accuracyPct}%</div>` +
+    `<div class="ct-row"><span class="ct-dot ct-time"></span>Avg time/question ${(p.avgSeconds || 0).toFixed(1)}s</div>`;
   if(Array.isArray(p.breakdown) && p.breakdown.length){
     html += '<div class="ct-sep"></div>' + p.breakdown.map(b => `<div class="ct-row ct-sub">${b.test}: ${b.score}/${b.total}</div>`).join('');
   }
@@ -3260,6 +3302,8 @@ function chartCard(name, runs){
     total: r.total,
     correct: r.score,
     incorrect: r.total - r.score,
+    accuracyPct: r.total ? Math.round((r.score / r.total) * 100) : 0,
+    avgSeconds: typeof r.avgSeconds === 'number' ? r.avgSeconds : 0,
     breakdown: (r.test === FULL_TEST_NAME && Array.isArray(r.breakdown)) ? r.breakdown : undefined,
     questions: Array.isArray(r.questions) ? r.questions : [],
     testName: name
