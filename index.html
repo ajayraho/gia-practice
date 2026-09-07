@@ -21,8 +21,44 @@ body{margin:0;min-height:100vh;}
   --fill:#14161a;
   --correct-glow:rgba(45,140,80,.45);
   --incorrect-glow:rgba(214,58,48,.45);
+  --line-total:#14161a;
+  --line-correct:#1c4d34;
+  --line-incorrect:#5c2020;
 }
 
+.ft-overlay{
+  position:fixed;inset:0;
+  background:rgba(255,255,255,.97);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  z-index:1000;
+}
+.ft-card{
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:32px 28px;
+  max-width:380px;
+  width:100%;
+  text-align:center;
+  display:flex;flex-direction:column;gap:14px;
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.25);
+  font-family:-apple-system,'Segoe UI',system-ui,Arial,sans-serif;
+  color:var(--ink);
+}
+.ft-title{font-size:19px;font-weight:700;letter-spacing:-.01em;}
+.ft-sub{color:var(--muted);font-size:14px;line-height:1.6;}
+.ft-sub span{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink);}
+.ft-btn{
+  background:var(--ink);color:#fff;border:1px solid var(--ink);
+  border-radius:9px;padding:12px 20px;font-size:14.5px;font-weight:600;
+  cursor:pointer;align-self:center;
+}
+.ft-btn:hover{opacity:.85;}
+.ft-rows{display:flex;flex-direction:column;gap:8px;text-align:left;margin-top:4px;}
+.ft-row{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;border:1px solid var(--border);border-radius:9px;padding:9px 12px;}
+.ft-row-name{font-weight:600;}
+.ft-row-score{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;}
 #view-polarity-drill{margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,'Segoe UI',system-ui,Arial,sans-serif; min-height:100vh; flex-direction:column; align-items:center; padding:36px 20px 48px;flex-direction:column;align-items:center;}
 
 #view-polarity-drill *{box-sizing:border-box;}
@@ -1001,6 +1037,18 @@ body{margin:0;min-height:100vh;}
 }
 #view-hub a.test-card:hover .test-arrow{color:var(--ink);}
 
+#view-hub a.test-card.fulltest-card{
+  background:var(--ink);
+  color:#fff;
+  border-color:var(--ink);
+}
+#view-hub a.test-card.fulltest-card .test-icon{border-color:rgba(255,255,255,.3);color:#fff;}
+#view-hub a.test-card.fulltest-card .test-info p{color:rgba(255,255,255,.72);}
+#view-hub a.test-card.fulltest-card .tag{border-color:rgba(255,255,255,.3);color:#fff;}
+#view-hub a.test-card.fulltest-card .test-arrow{color:rgba(255,255,255,.72);}
+#view-hub a.test-card.fulltest-card:hover{border-color:#fff;}
+#view-hub a.test-card.fulltest-card:hover .test-arrow{color:#fff;}
+
 #view-hub .history-link{
   align-self:center;
   background:none;
@@ -1045,41 +1093,56 @@ body{margin:0;min-height:100vh;}
 
 #view-history h1.title{font-size:22px;font-weight:700;margin:0;letter-spacing:-.01em;}
 
-#view-history #hist-content{display:flex;flex-direction:column;gap:10px;}
+#view-history #hist-content{display:flex;flex-direction:column;gap:22px;}
 
 #view-history .section-title{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700;margin:2px 2px 0;}
 
-#view-history .summary-grid{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;}
-#view-history .summary-row{
-  display:flex;align-items:center;gap:12px;
-  padding:13px 16px;
-  border-bottom:1px solid var(--border);
-  font-size:13.5px;
-}
-#view-history .summary-row:last-child{border-bottom:none;}
-#view-history .summary-row .name{flex:1;font-weight:600;}
-#view-history .summary-row .stat{color:var(--muted);font-variant-numeric:tabular-nums;}
-#view-history .summary-row .stat b{color:var(--ink);}
+#view-history .chart-list{display:flex;flex-direction:column;gap:12px;}
 
-#view-history .entry-list{display:flex;flex-direction:column;gap:9px;}
-#view-history .entry{
+#view-history .chart-card{
   border:1px solid var(--border);
-  border-radius:10px;
-  padding:13px 16px;
+  border-radius:12px;
+  padding:16px 16px 12px;
   display:flex;
-  align-items:center;
-  gap:14px;
+  flex-direction:column;
+  gap:8px;
 }
-#view-history .entry .info{flex:1;min-width:0;}
-#view-history .entry .test-name{font-weight:700;font-size:14.5px;}
-#view-history .entry .date{color:var(--muted);font-size:12.5px;margin-top:2px;}
-#view-history .entry .score{
-  flex:none;
-  text-align:right;
-  font-variant-numeric:tabular-nums;
+#view-history .chart-card-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;}
+#view-history .chart-card-head .name{font-weight:700;font-size:14.5px;}
+#view-history .chart-card-head .stats{font-size:12px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums;}
+#view-history .chart-card-head .stats b{color:var(--ink);}
+
+#view-history .chart-scroll{overflow-x:auto;margin:0 -2px;padding:0 2px;}
+#view-history .chart-scroll svg{display:block;}
+#view-history .chart-hit{fill:transparent;cursor:pointer;}
+#view-history .cdot{transition:r .1s ease;}
+#view-history .cdot-total{r:4px;}
+#view-history .cdot-total.hi{r:6.5px;}
+#view-history .cdot-correct, #view-history .cdot-incorrect{r:2.6px;}
+#view-history .cdot-correct.hi, #view-history .cdot-incorrect.hi{r:4.6px;}
+
+#view-history .chart-tip{
+  position:fixed;
+  display:none;
+  pointer-events:none;
+  z-index:50;
+  background:var(--ink);
+  color:#fff;
+  border-radius:9px;
+  padding:9px 11px;
+  font-size:12px;
+  line-height:1.55;
+  min-width:150px;
+  box-shadow:0 14px 30px -12px rgba(0,0,0,.4);
 }
-#view-history .entry .score .frac{font-weight:700;font-size:14.5px;}
-#view-history .entry .score .pct{color:var(--muted);font-size:12px;}
+#view-history .chart-tip .ct-date{font-weight:700;margin-bottom:4px;}
+#view-history .chart-tip .ct-row{display:flex;align-items:center;gap:6px;white-space:nowrap;}
+#view-history .chart-tip .ct-dot{width:7px;height:7px;border-radius:50%;flex:none;}
+#view-history .chart-tip .ct-total{background:#c7c9cf;}
+#view-history .chart-tip .ct-correct{background:#5fd693;}
+#view-history .chart-tip .ct-incorrect{background:#ef7a7a;}
+#view-history .chart-tip .ct-sep{border-top:1px solid rgba(255,255,255,.2);margin:6px 0 4px;}
+#view-history .chart-tip .ct-sub{color:rgba(255,255,255,.72);font-size:11px;}
 
 #view-history .empty-note{
   border:1px solid var(--border);
@@ -1088,6 +1151,14 @@ body{margin:0;min-height:100vh;}
   font-size:14px;
   text-align:center;
   padding:32px 20px;
+}
+#view-history .chart-empty{
+  border:1px dashed var(--border);
+  border-radius:12px;
+  color:var(--muted);
+  font-size:13px;
+  text-align:center;
+  padding:22px 16px;
 }
 
 #view-history button.ghost{
@@ -1114,6 +1185,16 @@ body{margin:0;min-height:100vh;}
     <p>A small set of home-built drills for the Thomas GIA test. Pick a test below to start a timed session.</p>
   </header>
 
+  <a class="test-card fulltest-card" href="#" id="fullTestBtn">
+    <div class="test-icon">&#9654;</div>
+    <div class="test-info">
+      <h2>Full Test - all 5 sections</h2>
+      <p>Runs every section back-to-back in the real GIA order, 3 minutes each, no mixing between topics - about 15 minutes total.</p>
+      <div class="test-meta"><span class="tag">15 min total</span><span class="tag">5 sections in sequence</span></div>
+    </div>
+    <div class="test-arrow">&rarr;</div>
+  </a>
+
   <div class="section-label">Available tests</div>
   <div class="test-list">
     <a class="test-card" href="#" onclick="navigate('view-polarity-drill');return false;">
@@ -1130,7 +1211,7 @@ body{margin:0;min-height:100vh;}
       <div class="test-icon">&#9638;</div>
       <div class="test-info">
         <h2>Column Match</h2>
-        <p>Perceptual speed: a lowercase letter over an uppercase letter in each column — count how many columns match.</p>
+        <p>Perceptual speed: a lowercase letter over an uppercase letter in each column - count how many columns match.</p>
         <div class="test-meta"><span class="tag">3 min test</span><span class="tag">Unlimited questions</span></div>
       </div>
       <div class="test-arrow">&rarr;</div>
@@ -1140,7 +1221,7 @@ body{margin:0;min-height:100vh;}
       <div class="test-icon">#</div>
       <div class="test-info">
         <h2>Furthest Out</h2>
-        <p>Numbers speed and accuracy: three numbers — find the median, then pick whichever end sits further from it.</p>
+        <p>Numbers speed and accuracy: three numbers - find the median, then pick whichever end sits further from it.</p>
         <div class="test-meta"><span class="tag">3 min test</span><span class="tag">Unlimited questions</span></div>
       </div>
       <div class="test-arrow">&rarr;</div>
@@ -1150,7 +1231,7 @@ body{margin:0;min-height:100vh;}
       <div class="test-icon">&#9635;</div>
       <div class="test-info">
         <h2>True Turn</h2>
-        <p>Spatial visualization: two boxes, each with a letter shown twice — rotated counts as the same, mirrored doesn't.</p>
+        <p>Spatial visualization: two boxes, each with a letter shown twice - rotated counts as the same, mirrored doesn't.</p>
         <div class="test-meta"><span class="tag">3 min test</span><span class="tag">Unlimited questions</span></div>
       </div>
       <div class="test-arrow">&rarr;</div>
@@ -1160,7 +1241,7 @@ body{margin:0;min-height:100vh;}
       <div class="test-icon">&#171;&#187;</div>
       <div class="test-info">
         <h2>Odd One Out</h2>
-        <p>Word meaning: three words, two related by meaning, opposite, or category — pick the one that doesn't belong.</p>
+        <p>Word meaning: three words, two related by meaning, opposite, or category - pick the one that doesn't belong.</p>
         <div class="test-meta"><span class="tag">3 min test</span><span class="tag">Unlimited questions</span></div>
       </div>
       <div class="test-arrow">&rarr;</div>
@@ -1256,7 +1337,7 @@ body{margin:0;min-height:100vh;}
       <p class="subtitle">Perceptual speed practice, Thomas GIA format.</p>
       <div class="card">
         <h2>How many columns have the same letter?</h2>
-        <p>A three-minute test. Each question shows a lowercase letter above an uppercase letter in each column. Case doesn't matter — "r" and "R" are the same letter. Count the matching columns and answer as fast as you can.</p>
+        <p>A three-minute test. Each question shows a lowercase letter above an uppercase letter in each column. Case doesn't matter - "r" and "R" are the same letter. Count the matching columns and answer as fast as you can.</p>
         <div class="example">
           <small>Sample question</small>
           <div class="grid-row lower"><span>r</span><span>j</span><span>e</span><span>p</span></div>
@@ -1379,14 +1460,14 @@ body{margin:0;min-height:100vh;}
       <p class="subtitle">Spatial visualization practice, Thomas GIA format.</p>
       <div class="card">
         <h2>How many boxes have the same letter?</h2>
-        <p>A three-minute test. Each box shows a letter twice — once plain, once turned. A letter that's just rotated still counts as the same letter. A letter that's been mirrored (flipped, like in a mirror) does not, even if it's spun around too.</p>
+        <p>A three-minute test. Each box shows a letter twice - once plain, once turned. A letter that's just rotated still counts as the same letter. A letter that's been mirrored (flipped, like in a mirror) does not, even if it's spun around too.</p>
         <div class="example">
           <small>Sample question</small>
           <div class="boxes-row">
             <div class="letter-box"><span class="glyph" style="transform:rotate(90deg);">S</span><span class="glyph">S</span></div>
             <div class="letter-box"><span class="glyph" style="transform:scaleX(-1);">S</span><span class="glyph">S</span></div>
           </div>
-          <div class="box-answer">Box 1 is just rotated — same letter. Box 2 is mirrored — not the same. &rarr; <b>1</b></div>
+          <div class="box-answer">Box 1 is just rotated - same letter. Box 2 is mirrored - not the same. &rarr; <b>1</b></div>
         </div>
         <button class="primary" id="tt-startBtn">Start 3-minute test</button>
       </div>
@@ -1443,7 +1524,7 @@ body{margin:0;min-height:100vh;}
       <p class="subtitle">Word meaning practice, Thomas GIA format.</p>
       <div class="card">
         <h2>Which word doesn't belong?</h2>
-        <p>A three-minute test. Each question shows three words. Two are related — by meaning, by opposite, or by category — and one doesn't fit. Pick the one that doesn't belong.</p>
+        <p>A three-minute test. Each question shows three words. Two are related - by meaning, by opposite, or by category - and one doesn't fit. Pick the one that doesn't belong.</p>
         <div class="example">
           <small>Sample question</small>
           <div class="word-row"><span>Lion</span><span>Intelligent</span><span>Cheetah</span></div>
@@ -1495,6 +1576,8 @@ body{margin:0;min-height:100vh;}
 
   <button class="ghost" id="hist-clearBtn" style="display:none;">Clear history</button>
 </div>
+
+<div class="chart-tip" id="hist-chartTip"></div>
 </div>
 
 <script>
@@ -1506,7 +1589,156 @@ var VIEW_PREFIX = {
 function stopAllTests(){
   ['pd','cm','fo','tt','oo'].forEach(function(p){ if(window['__stop_'+p]) window['__stop_'+p](); });
 }
-function navigate(viewId){
+
+/* ---------------- Full Test mode ----------------
+   Runs all 5 sections back-to-back, in the real GIA order, never mixing
+   questions from different tests together -- each section still runs as
+   its own self-contained 3-minute round, one after another. */
+var FULL_TEST_ORDER = ['view-polarity-drill','view-perceptual-speed','view-numbers-speed','view-spatial-visualization','view-word-meaning'];
+var TEST_LABELS = {
+  'Polarity Drill':'view-polarity-drill','Column Match':'view-perceptual-speed',
+  'Furthest Out':'view-numbers-speed','True Turn':'view-spatial-visualization','Odd One Out':'view-word-meaning'
+};
+var fullTestQueue = [];
+var fullTestResults = [];
+var inFullTest = false;
+var fullTestTimer = null;
+var fullTestSessionId = null;
+
+function testNameForView(viewId){
+  for(var name in TEST_LABELS){ if(TEST_LABELS[name] === viewId) return name; }
+  return '';
+}
+function activeViewEl(){ return document.querySelector('.view.active'); }
+function removeFullTestOverlay(){
+  var el = document.getElementById('ft-overlay');
+  if(el) el.remove();
+  if(fullTestTimer){ clearInterval(fullTestTimer); fullTestTimer = null; }
+}
+
+function startFullTest(){
+  fullTestQueue = FULL_TEST_ORDER.slice();
+  fullTestResults = [];
+  inFullTest = true;
+  fullTestSessionId = 'ft-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,8);
+  window.__fullTestSessionId = fullTestSessionId;
+  advanceFullTest();
+}
+
+function advanceFullTest(){
+  if(fullTestQueue.length === 0){
+    inFullTest = false;
+    showFullTestSummary();
+    return;
+  }
+  var viewId = fullTestQueue.shift();
+  navigate(viewId, {fromFullTest:true});
+  var prefix = VIEW_PREFIX[viewId];
+  setTimeout(function(){
+    var btn = document.getElementById(prefix+'-startBtn');
+    if(btn) btn.click();
+  }, 60);
+}
+
+window.__onTestFinish = function(testName, score, total){
+  if(!inFullTest) return;
+  fullTestResults.push({test:testName, score:score, total:total});
+  var isLast = fullTestQueue.length === 0;
+  showFullTestBanner(fullTestResults.length, isLast, isLast ? '' : testNameForView(fullTestQueue[0]));
+};
+
+function showFullTestBanner(completedCount, isLast, nextName){
+  removeFullTestOverlay();
+  var host = activeViewEl();
+  if(!host){ advanceFullTest(); return; }
+  var seconds = 3;
+  var overlay = document.createElement('div');
+  overlay.id = 'ft-overlay';
+  overlay.className = 'ft-overlay';
+  overlay.innerHTML =
+    '<div class="ft-card">' +
+      '<div class="ft-title">Section ' + completedCount + ' of 5 complete</div>' +
+      '<div class="ft-sub">' + (isLast ? 'Finishing up\u2026' : ('Next: ' + nextName + ' \u2014 continuing in <span id="ft-count">' + seconds + '</span>s')) + '</div>' +
+      (isLast ? '' : '<button class="ft-btn" id="ft-continue-btn">Continue now</button>') +
+    '</div>';
+  host.appendChild(overlay);
+
+  if(isLast){
+    setTimeout(advanceFullTest, 700);
+    return;
+  }
+
+  document.getElementById('ft-continue-btn').addEventListener('click', function(){
+    removeFullTestOverlay();
+    advanceFullTest();
+  });
+
+  fullTestTimer = setInterval(function(){
+    seconds--;
+    var countEl = document.getElementById('ft-count');
+    if(countEl) countEl.textContent = seconds;
+    if(seconds <= 0){
+      removeFullTestOverlay();
+      advanceFullTest();
+    }
+  }, 1000);
+}
+
+function showFullTestSummary(){
+  var host = activeViewEl();
+  if(!host) return;
+  removeFullTestOverlay();
+  var totalScore = fullTestResults.reduce(function(a,r){ return a+r.score; }, 0);
+  var totalQ = fullTestResults.reduce(function(a,r){ return a+r.total; }, 0);
+  var pct = totalQ ? Math.round((totalScore/totalQ)*100) : 0;
+  var rows = fullTestResults.map(function(r){
+    var p = r.total ? Math.round((r.score/r.total)*100) : 0;
+    return '<div class="ft-row"><span class="ft-row-name">' + r.test + '</span><span class="ft-row-score">' + r.score + ' / ' + r.total + ' \u00b7 ' + p + '%</span></div>';
+  }).join('');
+  var overlay = document.createElement('div');
+  overlay.id = 'ft-overlay';
+  overlay.className = 'ft-overlay';
+  overlay.innerHTML =
+    '<div class="ft-card ft-summary">' +
+      '<div class="ft-title">Full test complete</div>' +
+      '<div class="ft-sub">' + totalScore + ' / ' + totalQ + ' correct overall \u00b7 ' + pct + '%</div>' +
+      '<div class="ft-rows">' + rows + '</div>' +
+      '<button class="ft-btn" id="ft-done-btn">Back to hub</button>' +
+    '</div>';
+  host.appendChild(overlay);
+
+  try{
+    var arr = JSON.parse(localStorage.getItem('giaPracticeResults') || '[]');
+    arr.push({
+      test: 'Full Test',
+      date: new Date().toISOString(),
+      score: totalScore,
+      total: totalQ,
+      pct: pct,
+      session: fullTestSessionId,
+      breakdown: fullTestResults.slice()
+    });
+    while(arr.length > 200) arr.shift();
+    localStorage.setItem('giaPracticeResults', JSON.stringify(arr));
+  }catch(e){ /* localStorage unavailable -- fail silently */ }
+  fullTestSessionId = null;
+  window.__fullTestSessionId = null;
+
+  document.getElementById('ft-done-btn').addEventListener('click', function(){
+    removeFullTestOverlay();
+    navigate('view-hub');
+  });
+}
+
+function navigate(viewId, opts){
+  opts = opts || {};
+  if(inFullTest && !opts.fromFullTest){
+    inFullTest = false;
+    fullTestQueue = [];
+    fullTestSessionId = null;
+    window.__fullTestSessionId = null;
+    removeFullTestOverlay();
+  }
   stopAllTests();
   var resetKey = '__reset_' + (VIEW_PREFIX[viewId]||'');
   if(window[resetKey]) window[resetKey]();
@@ -1516,6 +1748,9 @@ function navigate(viewId){
   history.replaceState(null,'','#'+viewId);
 }
 window.addEventListener('load', function(){
+  var ftBtn = document.getElementById('fullTestBtn');
+  if(ftBtn) ftBtn.addEventListener('click', function(e){ e.preventDefault(); startFullTest(); });
+
   var initial = (location.hash||'').slice(1);
   var valid = ['view-hub','view-history','view-polarity-drill','view-perceptual-speed','view-numbers-speed','view-spatial-visualization','view-word-meaning'];
   navigate(valid.includes(initial) ? initial : 'view-hub');
@@ -1610,8 +1845,7 @@ const QUESTION_TEMPLATES = [
 /* ---------------- Item generator ----------------
    Matches the confirmed Thomas GIA format exactly: one statement about
    two people on one hidden trait, one question, two name options.
-   No ties, no "Cannot be determined", no multi-statement chains --
-   none of those appear in the real test's published examples. */
+   No ties, no "Cannot be determined", no multi-statement chains - none of those appear in the real test's published examples. */
 function generateItem(){
   const axis = pick(AXES);
   const template = weightedTemplate();
@@ -1640,7 +1874,7 @@ function saveResult(){
   if(total===0) return;
   try{
     const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
-    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100)});
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null)});
     while(arr.length>200) arr.shift();
     localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
   }catch(e){ /* localStorage unavailable -- fail silently */ }
@@ -1751,7 +1985,7 @@ function finishRound(){
   list.innerHTML = '';
   const missed = history.filter(h=>!h.correct);
   if(missed.length===0){
-    list.innerHTML = `<div class="empty-note">${total? "No misses — clean test." : "Nothing to review yet."}</div>`;
+    list.innerHTML = `<div class="empty-note">${total? "No misses - clean test." : "Nothing to review yet."}</div>`;
   } else {
     missed.forEach(h=>{
       const item = document.createElement('div');
@@ -1762,6 +1996,7 @@ function finishRound(){
   }
 
   showScreen('report');
+  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total);
 }
 
 el('pd-startBtn').addEventListener('click', ()=>{
@@ -1816,7 +2051,7 @@ function saveResult(){
   if(total===0) return;
   try{
     const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
-    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100)});
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null)});
     while(arr.length>200) arr.shift();
     localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
   }catch(e){ /* localStorage unavailable -- fail silently */ }
@@ -1937,7 +2172,7 @@ function finishRound(){
   list.innerHTML = '';
   const missed = history.filter(h=>!h.correct);
   if(missed.length===0){
-    list.innerHTML = `<div class="empty-note">${total? "No misses — clean test." : "Nothing to review yet."}</div>`;
+    list.innerHTML = `<div class="empty-note">${total? "No misses - clean test." : "Nothing to review yet."}</div>`;
   } else {
     missed.forEach(h=>{
       const item = document.createElement('div');
@@ -1953,6 +2188,7 @@ function finishRound(){
   }
 
   showScreen('report');
+  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total);
 }
 
 el('cm-startBtn').addEventListener('click', ()=>{
@@ -2011,7 +2247,7 @@ function saveResult(){
   if(total===0) return;
   try{
     const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
-    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100)});
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null)});
     while(arr.length>200) arr.shift();
     localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
   }catch(e){ /* localStorage unavailable -- fail silently */ }
@@ -2119,7 +2355,7 @@ function finishRound(){
   list.innerHTML = '';
   const missed = history.filter(h=>!h.correct);
   if(missed.length===0){
-    list.innerHTML = `<div class="empty-note">${total? "No misses — clean test." : "Nothing to review yet."}</div>`;
+    list.innerHTML = `<div class="empty-note">${total? "No misses - clean test." : "Nothing to review yet."}</div>`;
   } else {
     missed.forEach(h=>{
       const item = document.createElement('div');
@@ -2132,6 +2368,7 @@ function finishRound(){
   }
 
   showScreen('report');
+  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total);
 }
 
 el('fo-startBtn').addEventListener('click', ()=>{
@@ -2175,8 +2412,7 @@ function pickLetter(){
 }
 
 /* ---------------- Item generator ----------------
-   The verdict is decided FIRST, then the box is rendered to match it --
-   never the other way around. The letter is ALWAYS the same top and
+   The verdict is decided FIRST, then the box is rendered to match it - never the other way around. The letter is ALWAYS the same top and
    bottom -- the only question is how the top copy got there: a pure
    rotation (isMatch) or a mirror flip, optionally also rotated
    (not a match). Never a genuinely different letter -- that would make
@@ -2208,7 +2444,7 @@ function saveResult(){
   if(total===0) return;
   try{
     const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
-    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100)});
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null)});
     while(arr.length>200) arr.shift();
     localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
   }catch(e){ /* localStorage unavailable -- fail silently */ }
@@ -2328,7 +2564,7 @@ function finishRound(){
   list.innerHTML = '';
   const missed = history.filter(h=>!h.correct);
   if(missed.length===0){
-    list.innerHTML = `<div class="empty-note">${total? "No misses — clean test." : "Nothing to review yet."}</div>`;
+    list.innerHTML = `<div class="empty-note">${total? "No misses - clean test." : "Nothing to review yet."}</div>`;
   } else {
     missed.forEach(h=>{
       const item = document.createElement('div');
@@ -2342,6 +2578,7 @@ function finishRound(){
   }
 
   showScreen('report');
+  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total);
 }
 
 el('tt-startBtn').addEventListener('click', ()=>{
@@ -2461,7 +2698,7 @@ function saveResult(){
   if(total===0) return;
   try{
     const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
-    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100)});
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100), session:(window.__fullTestSessionId || null)});
     while(arr.length>200) arr.shift();
     localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
   }catch(e){ /* localStorage unavailable -- fail silently */ }
@@ -2569,7 +2806,7 @@ function finishRound(){
   list.innerHTML = '';
   const missed = history.filter(h=>!h.correct);
   if(missed.length===0){
-    list.innerHTML = `<div class="empty-note">${total? "No misses — clean test." : "Nothing to review yet."}</div>`;
+    list.innerHTML = `<div class="empty-note">${total? "No misses - clean test." : "Nothing to review yet."}</div>`;
   } else {
     missed.forEach(h=>{
       const item = document.createElement('div');
@@ -2582,6 +2819,7 @@ function finishRound(){
   }
 
   showScreen('report');
+  if(window.__onTestFinish) window.__onTestFinish(TEST_NAME, score, total);
 }
 
 el('oo-startBtn').addEventListener('click', ()=>{
@@ -2603,6 +2841,7 @@ window.__reset_oo = function(){ window.__stop_oo(); showScreen('start'); el('oo-
 (function(){
 
 const RESULTS_KEY = 'giaPracticeResults';
+const FULL_TEST_NAME = 'Full Test';
 
 function loadResults(){
   try{
@@ -2619,6 +2858,148 @@ function fmtDate(iso){
          d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'});
 }
 
+function fmtShortDate(iso){
+  const d = new Date(iso);
+  if(isNaN(d)) return '';
+  return d.toLocaleDateString(undefined,{month:'short',day:'numeric'});
+}
+
+function escHtml(s){
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+let chartSeq = 0;
+
+// Hand-rolled SVG line chart: no charting library, keeps the app fully
+// offline and dependency-free. points: [{date, total, correct, incorrect, breakdown?}], oldest first.
+function buildChart(points){
+  const id = 'c' + (chartSeq++);
+  const padL = 26, padR = 14, padT = 12, padB = 26;
+  const plotH = 116;
+  const n = points.length;
+  const spacing = n > 1 ? Math.max(46, Math.min(72, 420 / (n - 1))) : 0;
+  const plotW = n > 1 ? spacing * (n - 1) : 60;
+  const totalW = Math.max(260, padL + padR + plotW);
+  const totalH = padT + plotH + padB;
+
+  const maxVal = Math.max(1, ...points.map(p => p.total));
+  const mid = Math.round(maxVal / 2);
+
+  function xAt(i){ return n > 1 ? padL + i * spacing : totalW / 2; }
+  function yAt(v){ return padT + plotH - (v / maxVal) * plotH; }
+
+  const gridlines = [0, mid, maxVal].map(v => {
+    const y = yAt(v);
+    return `<line x1="${padL}" y1="${y}" x2="${totalW - padR}" y2="${y}" stroke="var(--border)" stroke-width="1" />` +
+           `<text x="${padL - 6}" y="${y + 3.5}" font-size="9.5" text-anchor="end" fill="var(--muted)">${v}</text>`;
+  }).join('');
+
+  function seriesLine(key, colorVar, width){
+    if(n <= 1) return '';
+    const pts = points.map((p, i) => `${xAt(i)},${yAt(p[key])}`).join(' ');
+    return `<polyline points="${pts}" fill="none" stroke="${colorVar}" stroke-width="${width}" stroke-linejoin="round" stroke-linecap="round" />`;
+  }
+
+  function seriesDots(key, colorVar, cls){
+    return points.map((p, i) => {
+      const x = xAt(i), y = yAt(p[key]);
+      return `<circle class="cdot ${cls}" data-idx="${i}" data-series="${key}" cx="${x}" cy="${y}" fill="${colorVar}" />`;
+    }).join('');
+  }
+
+  // total attempted is the primary series (thicker line, bigger dots);
+  // correct/incorrect are thinner supporting series
+  const lines = seriesLine('correct', 'var(--line-correct)', 1.5) + seriesLine('incorrect', 'var(--line-incorrect)', 1.5) + seriesLine('total', 'var(--line-total)', 2.5);
+  const dots = seriesDots('correct', 'var(--line-correct)', 'cdot-correct') + seriesDots('incorrect', 'var(--line-incorrect)', 'cdot-incorrect') + seriesDots('total', 'var(--line-total)', 'cdot-total');
+
+  const dateLabels = points.map((p, i) => {
+    const x = xAt(i);
+    return `<text x="${x}" y="${padT + plotH + 18}" font-size="9.5" text-anchor="middle" fill="var(--muted)">${fmtShortDate(p.date)}</text>`;
+  }).join('');
+
+  const hitW = n > 1 ? Math.max(20, spacing * 0.8) : 40;
+  const hits = points.map((p, i) => {
+    const x = xAt(i);
+    return `<rect class="chart-hit" data-idx="${i}" x="${x - hitW / 2}" y="${padT - 4}" width="${hitW}" height="${plotH + 8}"
+      onmouseenter="chartHover(event,this)" onmousemove="chartMove(event,this)" onmouseleave="chartUnhover(this)" />`;
+  }).join('');
+
+  const dataAttr = escHtml(JSON.stringify(points));
+
+  return `<svg width="${totalW}" height="${totalH}" viewBox="0 0 ${totalW} ${totalH}" data-points="${dataAttr}">${gridlines}${lines}${dots}${dateLabels}${hits}</svg>`;
+}
+
+function chartHover(evt, el){
+  const svg = el.closest('svg');
+  const idx = +el.getAttribute('data-idx');
+  const points = JSON.parse(svg.getAttribute('data-points').replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&'));
+  const p = points[idx];
+
+  svg.querySelectorAll('.cdot.hi').forEach(d => d.classList.remove('hi'));
+  svg.querySelectorAll('.cdot[data-idx="' + idx + '"]').forEach(d => d.classList.add('hi'));
+
+  let html = `<div class="ct-date">${fmtDate(p.date)}</div>` +
+    `<div class="ct-row"><span class="ct-dot ct-total"></span>Total attempted ${p.total}</div>` +
+    `<div class="ct-row"><span class="ct-dot ct-correct"></span>Correct ${p.correct}</div>` +
+    `<div class="ct-row"><span class="ct-dot ct-incorrect"></span>Incorrect ${p.incorrect}</div>`;
+  if(Array.isArray(p.breakdown) && p.breakdown.length){
+    html += '<div class="ct-sep"></div>' + p.breakdown.map(b => `<div class="ct-row ct-sub">${b.test}: ${b.score}/${b.total}</div>`).join('');
+  }
+  const tip = document.getElementById('hist-chartTip');
+  tip.innerHTML = html;
+  tip.style.display = 'block';
+  positionTip(evt, tip);
+}
+
+function chartMove(evt, el){
+  positionTip(evt, document.getElementById('hist-chartTip'));
+}
+
+function chartUnhover(el){
+  const svg = el.closest('svg');
+  svg.querySelectorAll('.cdot.hi').forEach(d => d.classList.remove('hi'));
+  document.getElementById('hist-chartTip').style.display = 'none';
+}
+
+function positionTip(evt, tip){
+  const pad = 16;
+  let x = evt.clientX + pad, y = evt.clientY + pad;
+  tip.style.left = x + 'px';
+  tip.style.top = y + 'px';
+  const rect = tip.getBoundingClientRect();
+  if(rect.right > window.innerWidth - 8) x = evt.clientX - rect.width - pad;
+  if(rect.bottom > window.innerHeight - 8) y = evt.clientY - rect.height - pad;
+  tip.style.left = x + 'px';
+  tip.style.top = y + 'px';
+}
+
+// exposed for the inline onmouseenter/onmousemove/onmouseleave handlers on
+// the SVG hit-rects above, since this whole script runs inside an IIFE
+window.chartHover = chartHover;
+window.chartMove = chartMove;
+window.chartUnhover = chartUnhover;
+
+function chartCard(name, runs){
+  const attempts = runs.length;
+  const last = runs[runs.length - 1];
+  const points = runs.map(r => ({
+    date: r.date,
+    total: r.total,
+    correct: r.score,
+    incorrect: r.total - r.score,
+    breakdown: (r.test === FULL_TEST_NAME && Array.isArray(r.breakdown)) ? r.breakdown : undefined
+  }));
+
+  return `
+    <div class="chart-card">
+      <div class="chart-card-head">
+        <div class="name">${name}</div>
+        <div class="stats">${attempts} attempt${attempts === 1 ? '' : 's'} · latest <b>${last.score}/${last.total}</b> correct</div>
+      </div>
+      <div class="chart-scroll">${buildChart(points)}</div>
+    </div>`;
+}
+
 function render(){
   const results = loadResults();
   const content = document.getElementById('hist-content');
@@ -2632,39 +3013,36 @@ function render(){
 
   clearBtn.style.display = 'inline-block';
 
-  // per-test summary: attempts count + best accuracy, in first-seen order
-  const byTest = {};
-  const order = [];
-  results.forEach(r=>{
-    if(!byTest[r.test]){ byTest[r.test] = {attempts:0, best:0}; order.push(r.test); }
-    byTest[r.test].attempts++;
-    byTest[r.test].best = Math.max(byTest[r.test].best, r.pct);
+  const individualByTest = {};
+  const individualOrder = [];
+  const fullTestRuns = [];
+
+  results.forEach(r => {
+    if(r.test === FULL_TEST_NAME){
+      fullTestRuns.push(r);
+    } else {
+      if(!individualByTest[r.test]){ individualByTest[r.test] = []; individualOrder.push(r.test); }
+      individualByTest[r.test].push(r);
+    }
   });
 
-  const summaryRows = order.map(name => `
-    <div class="summary-row">
-      <div class="name">${name}</div>
-      <div class="stat">${byTest[name].attempts} attempt${byTest[name].attempts===1?'':'s'}</div>
-      <div class="stat">best <b>${byTest[name].best}%</b></div>
-    </div>`).join('');
+  const individualCards = individualOrder.length
+    ? individualOrder.map(name => chartCard(name, individualByTest[name])).join('')
+    : '<div class="chart-empty">No individual-test attempts yet.</div>';
 
-  const entries = [...results].reverse().map(r => `
-    <div class="entry">
-      <div class="info">
-        <div class="test-name">${r.test}</div>
-        <div class="date">${fmtDate(r.date)}</div>
-      </div>
-      <div class="score">
-        <div class="frac">${r.score} / ${r.total}</div>
-        <div class="pct">${r.pct}%</div>
-      </div>
-    </div>`).join('');
+  const fullTestSection = fullTestRuns.length
+    ? chartCard(FULL_TEST_NAME, fullTestRuns)
+    : '<div class="chart-empty">No full-length attempts yet.</div>';
 
   content.innerHTML = `
-    <div class="section-title">By test</div>
-    <div class="summary-grid">${summaryRows}</div>
-    <div class="section-title">All attempts</div>
-    <div class="entry-list">${entries}</div>
+    <div>
+      <div class="section-title">Individual tests</div>
+      <div class="chart-list" style="margin-top:10px;">${individualCards}</div>
+    </div>
+    <div>
+      <div class="section-title">Full-length tests</div>
+      <div class="chart-list" style="margin-top:10px;">${fullTestSection}</div>
+    </div>
   `;
 }
 

@@ -15,6 +15,7 @@
 
 [**Tests**](#tests) •
 [**Features**](#features) •
+[**Results history**](#results-history) •
 [**Running it locally**](#running-it-locally) •
 [**Project structure**](#project-structure) •
 [**Disclaimer**](#disclaimer)
@@ -44,10 +45,22 @@ All five run as timed, 3-minute drills with unlimited questions — answer as ma
 ## Features
 
 - **Single-page app** — the hub, all five tests, and results history live in one `index.html`. Switching between them is instant (no page reloads), and leaving a test mid-session stops its timer and resets it cleanly.
-- **Results history** — every completed run is saved to `localStorage` (capped at 200 entries) and viewable from *See results history*, with a per-test best score and a full attempt log.
+- **Full Test mode** — runs all 5 sections back-to-back in the real GIA order (3 minutes each, no mixing between topics), with a short transition screen between sections and a combined score summary at the end.
+- **Results history with interactive charts** — every completed run is saved to `localStorage` (capped at 200 entries). See [Results history](#results-history) below.
 - **Format-verified content** — every question type, vocabulary level, and number range was checked against Thomas International's own [GIA example booklet](https://www.thomas.co/sites/default/files/2020-04/GIA_Example_Booklet.pdf) rather than invented — no "Cannot be determined" options, no multi-statement chains, no SAT-word vocabulary, nothing that doesn't appear in the real test.
 - **Deterministic generation** — every test decides the correct answer first (as signed values / booleans), then renders a question to match it, so there's never a case where the displayed question and the stored answer can disagree.
 - **Zero dependencies** — no build step, no bundler, no external requests at runtime. Open the file and it works.
+
+## Results history
+
+Every completed run — a single test or a full-length one — is saved locally and plotted as a trend line, so you can see whether you're actually improving.
+
+<img src="assets/history-screenshot.png" alt="gia-practice results history with interactive line charts" width="720" />
+
+- **Three lines per test**: total questions attempted, correct, and incorrect, plotted against attempt date, so speed and accuracy trends are both visible at a glance.
+- **Full-length runs get their own category** — a Full Test attempt shows up separately from solo test runs, alongside a section-by-section breakdown.
+- **Hover any point** for the exact numbers on that attempt (correct/incorrect count, and the per-section scores for a Full Test run).
+- Hand-rolled as plain SVG — no charting library — so the whole app stays dependency-free and works offline.
 
 ## Running it locally
 
@@ -65,10 +78,11 @@ It also works as a static [GitHub Pages](https://pages.github.com/) site — ena
 
 ```
 gia-practice/
-├── index.html      # the entire app — hub, all 5 tests, results history
+├── index.html      # the entire app — hub, all 5 tests, Full Test mode, results history
 ├── assets/
 │   ├── icon.png
-│   └── screenshot.png
+│   ├── screenshot.png
+│   └── history-screenshot.png
 └── README.md
 ```
 
