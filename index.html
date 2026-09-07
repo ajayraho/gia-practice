@@ -1,0 +1,2685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GIA Practice</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAACXBIWXMAAA7SAAAO0gFcPFpKAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAIABJREFUeJzs3XmYHdddJ/zvqapbVXfvVre6tVur5UWyvMiOYztkcUJCQrYBQmDeCS8zDPASQmDyAiGYGc37PjDPwLDNvIHASwI8vBkgMAQCmTAhYAiJk9iSvMiLtta+dKvV611rPe8fbdmydFvqe6vuPVX3fj/P48eWuu+pn6zb93zrnFPnAERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERHQtoboAorhIKfXpxcWtQsqS6lqIiG6kslDdiiCw2nmNpsnzt9xyyz8LIfw4amAAoNSbm5sbCqT4OQjxgwBWq66HiOhmpi5Owffa78d1XQtNy/xnTYQf2L59+6UoNTAAUKpdWljYroX4EoDtqmshIlqpTgPAFUbGaFpm4ZHt29cd6LQNreOrEyk2OTmZ1wL8Ddj5E9GA8T3fdtzqP124cCHXaRsMAJRahml/FAI7VddBRKSC7/n5atX5vU5fzwBAKSY+pLoCIiKV/MD/zk5fywBAqXThwoUc7/6JaNB5rleUUnbUlzMAUCqZ5tCw6hqIiJJgYmJitJPXMQBQKgnR4BMsREQANE3r6POQAYCIiGgAMQAQERENIAYAIiKiAcQAQERENIAYAIiIiAYQAwAREdEAYgAgIiIaQAwAREREA4gBgIiIaAAxABAREQ0gBgAiIqIBxABAREQ0gBgAiIiIBhADABER0QBiACAiIhpADABEREQDiAGAiIhoADEAEBERDSBDdQEUze899hO/cexy+OOaJuStw/jpH/zF//YbqmsiIqLk4whAin1634/vffqc/9GFuq/PVT3j6Yvhr//+vh9bo7ouIiJKPgaAFDs3o/1jEIav/Nr1A0zOG88oLImIiFKCASClPv3YRz42ueDlr/39s3P++Gce+5HvVlETERGlBwNASh2elr8sIa/7/VCGODFnflZBSURElCIMACn0yY//+N9UGv6yf3eXK575O5/46Kd6WRMREaULA0DKfH7fTw4dmZbvutn3HbkU/PDj+97EpzyIiKglBoCUObwYvOh6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">
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;min-height:100vh;}
+.view{display:none;box-sizing:border-box;}
+.view.active{display:flex;}
+
+:root{
+  --bg:#ffffff;
+  --ink:#14161a;
+  --muted:#6b6f76;
+  --border:#dfe1e5;
+  --border-strong:#14161a;
+  --track:#e7e8eb;
+  --fill:#14161a;
+  --correct-glow:rgba(45,140,80,.45);
+  --incorrect-glow:rgba(214,58,48,.45);
+}
+
+#view-polarity-drill{margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,'Segoe UI',system-ui,Arial,sans-serif; min-height:100vh; flex-direction:column; align-items:center; padding:36px 20px 48px;flex-direction:column;align-items:center;}
+
+#view-polarity-drill *{box-sizing:border-box;}
+#view-polarity-drill .wrap{width:100%;max-width:560px;display:flex;flex-direction:column;gap:16px;}
+
+#view-polarity-drill .topbar{display:flex;align-items:center;gap:14px;}
+#view-polarity-drill .icon-btn{
+  flex:none;
+  width:40px;height:40px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--bg);
+  color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;
+  text-decoration:none;
+  cursor:pointer;
+}
+#view-polarity-drill .icon-btn:hover{border-color:var(--border-strong);}
+#view-polarity-drill .icon-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+
+#view-polarity-drill .progress-track{
+  flex:1;
+  height:6px;
+  background:var(--track);
+  border-radius:99px;
+  overflow:hidden;
+}
+#view-polarity-drill .progress-fill{
+  height:100%;
+  width:0%;
+  background:var(--fill);
+  border-radius:99px;
+  transition:width .3s linear;
+}
+
+#view-polarity-drill .status-row{
+  display:flex;justify-content:space-between;
+  font-size:12.5px;color:var(--muted);
+  font-variant-numeric:tabular-nums;
+  padding:0 2px;
+}
+
+#view-polarity-drill .stage{position:relative;}
+#view-polarity-drill .screen{display:none;}
+#view-polarity-drill .screen.active{display:flex;flex-direction:column;gap:18px;}
+
+#view-polarity-drill h1.title{font-size:22px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em;}
+#view-polarity-drill .subtitle{margin:0 0 18px;color:var(--muted);font-size:14px;line-height:1.6;max-width:50ch;}
+
+/* cards */
+#view-polarity-drill .card{
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:30px 28px;
+}
+#view-polarity-drill #pd-start .card{display:flex;flex-direction:column;gap:16px;padding:32px 28px;}
+#view-polarity-drill #pd-start .card h2{font-size:19px;font-weight:700;margin:0;}
+#view-polarity-drill #pd-start .card p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6;}
+#view-polarity-drill .example{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:13px 15px;
+  font-size:14.5px;
+}
+#view-polarity-drill .example small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+
+#view-polarity-drill button.primary{
+  background:var(--ink);
+  color:#fff;
+  border:1px solid var(--ink);
+  border-radius:9px;
+  padding:12px 20px;
+  font-size:14.5px;
+  font-weight:600;
+  cursor:pointer;
+  align-self:flex-start;
+}
+#view-polarity-drill button.primary:hover{opacity:.85;}
+#view-polarity-drill button.primary:active{opacity:.7;}
+#view-polarity-drill button.primary:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
+
+#view-polarity-drill .card-face{
+  min-height:150px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:22px;
+  text-align:center;
+  transition:box-shadow .3s ease;
+}
+#view-polarity-drill .card-face.glow-correct{box-shadow:0 22px 34px -18px var(--correct-glow);}
+#view-polarity-drill .card-face.glow-incorrect{box-shadow:0 22px 34px -18px var(--incorrect-glow);}
+
+#view-polarity-drill .prompt{font-size:18px;line-height:1.5;font-weight:500;}
+#view-polarity-drill #pd-questionScreen .prompt{font-weight:700;}
+
+#view-polarity-drill .options{display:flex;flex-direction:row;gap:12px;justify-content:center;width:100%;}
+#view-polarity-drill .option{
+  flex:1;
+  max-width:220px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:14px 16px;
+  font-size:14.5px;
+  font-weight:600;
+  color:var(--ink);
+  text-align:center;
+  cursor:pointer;
+}
+#view-polarity-drill .option:hover:not(:disabled){border-color:var(--border-strong);}
+#view-polarity-drill .option:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+#view-polarity-drill .option:disabled{cursor:default;}
+@media (max-width:420px){
+  #view-polarity-drill .options{flex-direction:column;}
+  #view-polarity-drill .option{max-width:none;}
+}
+
+#view-polarity-drill .foot-link{
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+  background:none;border:none;cursor:pointer;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  padding:4px;
+}
+
+/* report screen */
+#view-polarity-drill .headline{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:26px 26px;
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+#view-polarity-drill .score-ring{
+  width:84px;height:84px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:conic-gradient(var(--ink) calc(var(--pct,0)*1%), var(--track) 0);
+  flex:none;
+}
+#view-polarity-drill .score-ring .inner{
+  width:64px;height:64px;border-radius:50%;background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+#view-polarity-drill .score-ring .inner b{font-size:18px;font-variant-numeric:tabular-nums;}
+#view-polarity-drill .score-ring .inner small{font-size:9px;color:var(--muted);letter-spacing:.04em;}
+#view-polarity-drill .headline-text h2{font-size:18px;margin:0 0 4px;font-weight:700;}
+#view-polarity-drill .headline-text p{margin:0;color:var(--muted);font-size:13.5px;}
+
+#view-polarity-drill .section-title{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700;margin:2px 2px 0;}
+
+#view-polarity-drill .review-list{display:flex;flex-direction:column;gap:9px;max-height:320px;overflow-y:auto;padding-right:4px;}
+#view-polarity-drill .review-item{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:13px 15px;
+}
+#view-polarity-drill .review-item .stmt{font-size:13.5px;margin-bottom:5px;color:var(--muted);}
+#view-polarity-drill .review-item .q{font-weight:700;font-size:13.5px;margin-bottom:5px;}
+#view-polarity-drill .review-item .ans{font-size:12.5px;display:flex;gap:14px;flex-wrap:wrap;}
+#view-polarity-drill .review-item .ans .you{color:var(--ink);}
+#view-polarity-drill .review-item .ans .correct-ans{color:var(--ink);font-weight:700;}
+
+#view-polarity-drill .empty-note{color:var(--muted);font-size:13.5px;text-align:center;padding:14px;}
+
+#view-polarity-drill .report-actions{display:flex;justify-content:center;}
+
+#view-perceptual-speed{margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,'Segoe UI',system-ui,Arial,sans-serif; min-height:100vh; flex-direction:column; align-items:center; padding:36px 20px 48px;flex-direction:column;align-items:center;}
+
+#view-perceptual-speed *{box-sizing:border-box;}
+#view-perceptual-speed .wrap{width:100%;max-width:560px;display:flex;flex-direction:column;gap:16px;}
+
+#view-perceptual-speed .topbar{display:flex;align-items:center;gap:14px;}
+#view-perceptual-speed .icon-btn{
+  flex:none;
+  width:40px;height:40px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--bg);
+  color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;
+  text-decoration:none;
+  cursor:pointer;
+}
+#view-perceptual-speed .icon-btn:hover{border-color:var(--border-strong);}
+#view-perceptual-speed .icon-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+
+#view-perceptual-speed .progress-track{
+  flex:1;
+  height:6px;
+  background:var(--track);
+  border-radius:99px;
+  overflow:hidden;
+}
+#view-perceptual-speed .progress-fill{
+  height:100%;
+  width:0%;
+  background:var(--fill);
+  border-radius:99px;
+  transition:width .3s linear;
+}
+
+#view-perceptual-speed .status-row{
+  display:flex;justify-content:space-between;
+  font-size:12.5px;color:var(--muted);
+  font-variant-numeric:tabular-nums;
+  padding:0 2px;
+}
+
+#view-perceptual-speed .stage{position:relative;}
+#view-perceptual-speed .screen{display:none;}
+#view-perceptual-speed .screen.active{display:flex;flex-direction:column;gap:18px;}
+
+#view-perceptual-speed h1.title{font-size:22px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em;}
+#view-perceptual-speed .subtitle{margin:0 0 18px;color:var(--muted);font-size:14px;line-height:1.6;max-width:50ch;}
+
+/* cards */
+#view-perceptual-speed .card{
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:30px 28px;
+}
+#view-perceptual-speed #cm-start .card{display:flex;flex-direction:column;gap:16px;padding:32px 28px;}
+#view-perceptual-speed #cm-start .card h2{font-size:19px;font-weight:700;margin:0;}
+#view-perceptual-speed #cm-start .card p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6;}
+#view-perceptual-speed .example{border:1px solid var(--border);border-radius:10px;padding:16px 15px;}
+#view-perceptual-speed .example small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;}
+#view-perceptual-speed .example .grid-row{font-size:20px;letter-spacing:22px;text-align:center;padding:2px 0;}
+#view-perceptual-speed .example .grid-answer{margin-top:10px;font-size:13.5px;text-align:center;}
+
+#view-perceptual-speed button.primary{
+  background:var(--ink);
+  color:#fff;
+  border:1px solid var(--ink);
+  border-radius:9px;
+  padding:12px 20px;
+  font-size:14.5px;
+  font-weight:600;
+  cursor:pointer;
+  align-self:flex-start;
+}
+#view-perceptual-speed button.primary:hover{opacity:.85;}
+#view-perceptual-speed button.primary:active{opacity:.7;}
+#view-perceptual-speed button.primary:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
+
+#view-perceptual-speed .card-face{
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+  transition:box-shadow .3s ease;
+}
+#view-perceptual-speed .card-face.glow-correct{box-shadow:0 22px 34px -18px var(--correct-glow);}
+#view-perceptual-speed .card-face.glow-incorrect{box-shadow:0 22px 34px -18px var(--incorrect-glow);}
+
+#view-perceptual-speed .q-title{font-size:16px;font-weight:700;}
+
+#view-perceptual-speed .grid-wrap{display:flex;flex-direction:column;gap:6px;align-items:center;padding:6px 0;}
+#view-perceptual-speed .grid-row{display:flex;gap:34px;}
+#view-perceptual-speed .grid-cell{
+  width:36px;
+  text-align:center;
+  font-size:26px;
+  line-height:1.3;
+}
+#view-perceptual-speed .grid-row.lower .grid-cell{font-weight:400;}
+#view-perceptual-speed .grid-row.upper .grid-cell{font-weight:600;}
+
+#view-perceptual-speed .options{display:flex;flex-direction:row;gap:10px;justify-content:center;width:100%;}
+#view-perceptual-speed .option{
+  flex:1;
+  max-width:64px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:12px 0;
+  font-size:15px;
+  font-weight:700;
+  color:var(--ink);
+  text-align:center;
+  cursor:pointer;
+  font-variant-numeric:tabular-nums;
+}
+#view-perceptual-speed .option:hover:not(:disabled){border-color:var(--border-strong);}
+#view-perceptual-speed .option:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+#view-perceptual-speed .option:disabled{cursor:default;}
+
+#view-perceptual-speed .foot-link{
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+  background:none;border:none;cursor:pointer;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  padding:4px;
+}
+
+/* report screen */
+#view-perceptual-speed .headline{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:26px 26px;
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+#view-perceptual-speed .score-ring{
+  width:84px;height:84px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:conic-gradient(var(--ink) calc(var(--pct,0)*1%), var(--track) 0);
+  flex:none;
+}
+#view-perceptual-speed .score-ring .inner{
+  width:64px;height:64px;border-radius:50%;background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+#view-perceptual-speed .score-ring .inner b{font-size:18px;font-variant-numeric:tabular-nums;}
+#view-perceptual-speed .score-ring .inner small{font-size:9px;color:var(--muted);letter-spacing:.04em;}
+#view-perceptual-speed .headline-text h2{font-size:18px;margin:0 0 4px;font-weight:700;}
+#view-perceptual-speed .headline-text p{margin:0;color:var(--muted);font-size:13.5px;}
+
+#view-perceptual-speed .section-title{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700;margin:2px 2px 0;}
+
+#view-perceptual-speed .review-list{display:flex;flex-direction:column;gap:9px;max-height:320px;overflow-y:auto;padding-right:4px;}
+#view-perceptual-speed .review-item{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px 15px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+#view-perceptual-speed .review-item .mini-grid{display:flex;flex-direction:column;gap:3px;flex:none;}
+#view-perceptual-speed .review-item .mini-row{display:flex;gap:10px;font-size:15px;}
+#view-perceptual-speed .review-item .mini-row span{width:16px;text-align:center;}
+#view-perceptual-speed .review-item .mini-row.upper span{font-weight:600;}
+#view-perceptual-speed .review-item .ans{font-size:12.5px;display:flex;flex-direction:column;gap:2px;}
+#view-perceptual-speed .review-item .ans .you{color:var(--ink);}
+#view-perceptual-speed .review-item .ans .correct-ans{color:var(--ink);font-weight:700;}
+
+#view-perceptual-speed .empty-note{color:var(--muted);font-size:13.5px;text-align:center;padding:14px;}
+
+#view-perceptual-speed .report-actions{display:flex;justify-content:center;}
+
+#view-numbers-speed{margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,'Segoe UI',system-ui,Arial,sans-serif; min-height:100vh; flex-direction:column; align-items:center; padding:36px 20px 48px;flex-direction:column;align-items:center;}
+
+#view-numbers-speed *{box-sizing:border-box;}
+#view-numbers-speed .wrap{width:100%;max-width:560px;display:flex;flex-direction:column;gap:16px;}
+
+#view-numbers-speed .topbar{display:flex;align-items:center;gap:14px;}
+#view-numbers-speed .icon-btn{
+  flex:none;
+  width:40px;height:40px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--bg);
+  color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;
+  text-decoration:none;
+  cursor:pointer;
+}
+#view-numbers-speed .icon-btn:hover{border-color:var(--border-strong);}
+#view-numbers-speed .icon-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+
+#view-numbers-speed .progress-track{
+  flex:1;
+  height:6px;
+  background:var(--track);
+  border-radius:99px;
+  overflow:hidden;
+}
+#view-numbers-speed .progress-fill{
+  height:100%;
+  width:0%;
+  background:var(--fill);
+  border-radius:99px;
+  transition:width .3s linear;
+}
+
+#view-numbers-speed .status-row{
+  display:flex;justify-content:space-between;
+  font-size:12.5px;color:var(--muted);
+  font-variant-numeric:tabular-nums;
+  padding:0 2px;
+}
+
+#view-numbers-speed .stage{position:relative;}
+#view-numbers-speed .screen{display:none;}
+#view-numbers-speed .screen.active{display:flex;flex-direction:column;gap:18px;}
+
+#view-numbers-speed h1.title{font-size:22px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em;}
+#view-numbers-speed .subtitle{margin:0 0 18px;color:var(--muted);font-size:14px;line-height:1.6;max-width:50ch;}
+
+/* cards */
+#view-numbers-speed .card{
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:30px 28px;
+}
+#view-numbers-speed #fo-start .card{display:flex;flex-direction:column;gap:16px;padding:32px 28px;}
+#view-numbers-speed #fo-start .card h2{font-size:19px;font-weight:700;margin:0;}
+#view-numbers-speed #fo-start .card p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6;}
+#view-numbers-speed .example{border:1px solid var(--border);border-radius:10px;padding:16px 15px;}
+#view-numbers-speed .example small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;}
+#view-numbers-speed .example .num-row{display:flex;gap:12px;justify-content:center;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;padding:4px 0;}
+#view-numbers-speed .example .num-answer{margin-top:10px;font-size:13.5px;text-align:center;}
+
+#view-numbers-speed button.primary{
+  background:var(--ink);
+  color:#fff;
+  border:1px solid var(--ink);
+  border-radius:9px;
+  padding:12px 20px;
+  font-size:14.5px;
+  font-weight:600;
+  cursor:pointer;
+  align-self:flex-start;
+}
+#view-numbers-speed button.primary:hover{opacity:.85;}
+#view-numbers-speed button.primary:active{opacity:.7;}
+#view-numbers-speed button.primary:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
+
+#view-numbers-speed .card-face{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:26px;
+  text-align:center;
+  transition:box-shadow .3s ease;
+}
+#view-numbers-speed .card-face.glow-correct{box-shadow:0 22px 34px -18px var(--correct-glow);}
+#view-numbers-speed .card-face.glow-incorrect{box-shadow:0 22px 34px -18px var(--incorrect-glow);}
+
+#view-numbers-speed .q-title{font-size:16px;font-weight:700;}
+
+#view-numbers-speed .options{display:flex;flex-direction:row;gap:12px;justify-content:center;width:100%;}
+#view-numbers-speed .option{
+  flex:1;
+  max-width:110px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:16px 0;
+  font-size:17px;
+  font-weight:700;
+  color:var(--ink);
+  text-align:center;
+  cursor:pointer;
+  font-variant-numeric:tabular-nums;
+}
+#view-numbers-speed .option:hover:not(:disabled){border-color:var(--border-strong);}
+#view-numbers-speed .option:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+#view-numbers-speed .option:disabled{cursor:default;}
+@media (max-width:420px){
+  #view-numbers-speed .options{flex-direction:column;align-items:center;}
+  #view-numbers-speed .option{width:100%;max-width:220px;}
+}
+
+#view-numbers-speed .foot-link{
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+  background:none;border:none;cursor:pointer;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  padding:4px;
+}
+
+/* report screen */
+#view-numbers-speed .headline{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:26px 26px;
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+#view-numbers-speed .score-ring{
+  width:84px;height:84px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:conic-gradient(var(--ink) calc(var(--pct,0)*1%), var(--track) 0);
+  flex:none;
+}
+#view-numbers-speed .score-ring .inner{
+  width:64px;height:64px;border-radius:50%;background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+#view-numbers-speed .score-ring .inner b{font-size:18px;font-variant-numeric:tabular-nums;}
+#view-numbers-speed .score-ring .inner small{font-size:9px;color:var(--muted);letter-spacing:.04em;}
+#view-numbers-speed .headline-text h2{font-size:18px;margin:0 0 4px;font-weight:700;}
+#view-numbers-speed .headline-text p{margin:0;color:var(--muted);font-size:13.5px;}
+
+#view-numbers-speed .section-title{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700;margin:2px 2px 0;}
+
+#view-numbers-speed .review-list{display:flex;flex-direction:column;gap:9px;max-height:320px;overflow-y:auto;padding-right:4px;}
+#view-numbers-speed .review-item{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px 15px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+#view-numbers-speed .review-item .nums{
+  flex:none;
+  display:flex;gap:8px;
+  font-weight:700;font-size:14.5px;font-variant-numeric:tabular-nums;
+}
+#view-numbers-speed .review-item .ans{font-size:12.5px;display:flex;flex-direction:column;gap:2px;}
+#view-numbers-speed .review-item .ans .you{color:var(--ink);}
+#view-numbers-speed .review-item .ans .correct-ans{color:var(--ink);font-weight:700;}
+
+#view-numbers-speed .empty-note{color:var(--muted);font-size:13.5px;text-align:center;padding:14px;}
+
+#view-numbers-speed .report-actions{display:flex;justify-content:center;}
+
+#view-spatial-visualization{margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,'Segoe UI',system-ui,Arial,sans-serif; min-height:100vh; flex-direction:column; align-items:center; padding:36px 20px 48px;flex-direction:column;align-items:center;}
+
+#view-spatial-visualization *{box-sizing:border-box;}
+#view-spatial-visualization .wrap{width:100%;max-width:560px;display:flex;flex-direction:column;gap:16px;}
+
+#view-spatial-visualization .topbar{display:flex;align-items:center;gap:14px;}
+#view-spatial-visualization .icon-btn{
+  flex:none;
+  width:40px;height:40px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--bg);
+  color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;
+  text-decoration:none;
+  cursor:pointer;
+}
+#view-spatial-visualization .icon-btn:hover{border-color:var(--border-strong);}
+#view-spatial-visualization .icon-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+
+#view-spatial-visualization .progress-track{
+  flex:1;
+  height:6px;
+  background:var(--track);
+  border-radius:99px;
+  overflow:hidden;
+}
+#view-spatial-visualization .progress-fill{
+  height:100%;
+  width:0%;
+  background:var(--fill);
+  border-radius:99px;
+  transition:width .3s linear;
+}
+
+#view-spatial-visualization .status-row{
+  display:flex;justify-content:space-between;
+  font-size:12.5px;color:var(--muted);
+  font-variant-numeric:tabular-nums;
+  padding:0 2px;
+}
+
+#view-spatial-visualization .stage{position:relative;}
+#view-spatial-visualization .screen{display:none;}
+#view-spatial-visualization .screen.active{display:flex;flex-direction:column;gap:18px;}
+
+#view-spatial-visualization h1.title{font-size:22px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em;}
+#view-spatial-visualization .subtitle{margin:0 0 18px;color:var(--muted);font-size:14px;line-height:1.6;max-width:50ch;}
+
+/* cards */
+#view-spatial-visualization .card{
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:30px 28px;
+}
+#view-spatial-visualization #tt-start .card{display:flex;flex-direction:column;gap:16px;padding:32px 28px;}
+#view-spatial-visualization #tt-start .card h2{font-size:19px;font-weight:700;margin:0;}
+#view-spatial-visualization #tt-start .card p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6;}
+#view-spatial-visualization .example{border:1px solid var(--border);border-radius:10px;padding:16px 15px;}
+#view-spatial-visualization .example small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;}
+#view-spatial-visualization .example .boxes-row{display:flex;gap:16px;justify-content:center;padding:2px 0;}
+#view-spatial-visualization .example .box-answer{margin-top:10px;font-size:13.5px;text-align:center;}
+
+#view-spatial-visualization button.primary{
+  background:var(--ink);
+  color:#fff;
+  border:1px solid var(--ink);
+  border-radius:9px;
+  padding:12px 20px;
+  font-size:14.5px;
+  font-weight:600;
+  cursor:pointer;
+  align-self:flex-start;
+}
+#view-spatial-visualization button.primary:hover{opacity:.85;}
+#view-spatial-visualization button.primary:active{opacity:.7;}
+#view-spatial-visualization button.primary:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
+
+#view-spatial-visualization .card-face{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:26px;
+  text-align:center;
+  transition:box-shadow .3s ease;
+}
+#view-spatial-visualization .card-face.glow-correct{box-shadow:0 22px 34px -18px var(--correct-glow);}
+#view-spatial-visualization .card-face.glow-incorrect{box-shadow:0 22px 34px -18px var(--incorrect-glow);}
+
+#view-spatial-visualization .q-title{font-size:16px;font-weight:700;}
+#view-spatial-visualization .q-sub{margin-top:-14px;color:var(--muted);font-size:13px;}
+
+/* the two letter boxes */
+#view-spatial-visualization .boxes-row{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;}
+#view-spatial-visualization .letter-box{
+  width:82px;height:112px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+}
+#view-spatial-visualization .glyph{
+  display:inline-block;
+  font-size:30px;
+  font-weight:600;
+  line-height:1;
+}
+
+#view-spatial-visualization .options{display:flex;flex-direction:row;gap:12px;justify-content:center;width:100%;}
+#view-spatial-visualization .option{
+  flex:1;
+  max-width:80px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:14px 0;
+  font-size:16px;
+  font-weight:700;
+  color:var(--ink);
+  text-align:center;
+  cursor:pointer;
+  font-variant-numeric:tabular-nums;
+}
+#view-spatial-visualization .option:hover:not(:disabled){border-color:var(--border-strong);}
+#view-spatial-visualization .option:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+#view-spatial-visualization .option:disabled{cursor:default;}
+@media (max-width:420px){
+  #view-spatial-visualization .options{flex-direction:column;align-items:center;}
+  #view-spatial-visualization .option{width:100%;max-width:220px;}
+}
+
+#view-spatial-visualization .foot-link{
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+  background:none;border:none;cursor:pointer;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  padding:4px;
+}
+
+/* report screen */
+#view-spatial-visualization .headline{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:26px 26px;
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+#view-spatial-visualization .score-ring{
+  width:84px;height:84px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:conic-gradient(var(--ink) calc(var(--pct,0)*1%), var(--track) 0);
+  flex:none;
+}
+#view-spatial-visualization .score-ring .inner{
+  width:64px;height:64px;border-radius:50%;background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+#view-spatial-visualization .score-ring .inner b{font-size:18px;font-variant-numeric:tabular-nums;}
+#view-spatial-visualization .score-ring .inner small{font-size:9px;color:var(--muted);letter-spacing:.04em;}
+#view-spatial-visualization .headline-text h2{font-size:18px;margin:0 0 4px;font-weight:700;}
+#view-spatial-visualization .headline-text p{margin:0;color:var(--muted);font-size:13.5px;}
+
+#view-spatial-visualization .section-title{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700;margin:2px 2px 0;}
+
+#view-spatial-visualization .review-list{display:flex;flex-direction:column;gap:9px;max-height:320px;overflow-y:auto;padding-right:4px;}
+#view-spatial-visualization .review-item{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px 15px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+#view-spatial-visualization .review-item .mini-boxes{flex:none;display:flex;gap:8px;}
+#view-spatial-visualization .review-item .mini-box{
+  width:40px;height:56px;
+  border:1px solid var(--border);
+  border-radius:7px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+}
+#view-spatial-visualization .review-item .mini-box .glyph{font-size:15px;font-weight:600;}
+#view-spatial-visualization .review-item .ans{font-size:12.5px;display:flex;flex-direction:column;gap:2px;}
+#view-spatial-visualization .review-item .ans .you{color:var(--ink);}
+#view-spatial-visualization .review-item .ans .correct-ans{color:var(--ink);font-weight:700;}
+
+#view-spatial-visualization .empty-note{color:var(--muted);font-size:13.5px;text-align:center;padding:14px;}
+
+#view-spatial-visualization .report-actions{display:flex;justify-content:center;}
+
+#view-word-meaning{margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,'Segoe UI',system-ui,Arial,sans-serif; min-height:100vh; flex-direction:column; align-items:center; padding:36px 20px 48px;flex-direction:column;align-items:center;}
+
+#view-word-meaning *{box-sizing:border-box;}
+#view-word-meaning .wrap{width:100%;max-width:560px;display:flex;flex-direction:column;gap:16px;}
+
+#view-word-meaning .topbar{display:flex;align-items:center;gap:14px;}
+#view-word-meaning .icon-btn{
+  flex:none;
+  width:40px;height:40px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--bg);
+  color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;
+  text-decoration:none;
+  cursor:pointer;
+}
+#view-word-meaning .icon-btn:hover{border-color:var(--border-strong);}
+#view-word-meaning .icon-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+
+#view-word-meaning .progress-track{
+  flex:1;
+  height:6px;
+  background:var(--track);
+  border-radius:99px;
+  overflow:hidden;
+}
+#view-word-meaning .progress-fill{
+  height:100%;
+  width:0%;
+  background:var(--fill);
+  border-radius:99px;
+  transition:width .3s linear;
+}
+
+#view-word-meaning .status-row{
+  display:flex;justify-content:space-between;
+  font-size:12.5px;color:var(--muted);
+  font-variant-numeric:tabular-nums;
+  padding:0 2px;
+}
+
+#view-word-meaning .stage{position:relative;}
+#view-word-meaning .screen{display:none;}
+#view-word-meaning .screen.active{display:flex;flex-direction:column;gap:18px;}
+
+#view-word-meaning h1.title{font-size:22px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em;}
+#view-word-meaning .subtitle{margin:0 0 18px;color:var(--muted);font-size:14px;line-height:1.6;max-width:50ch;}
+
+/* cards */
+#view-word-meaning .card{
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:30px 28px;
+}
+#view-word-meaning #oo-start .card{display:flex;flex-direction:column;gap:16px;padding:32px 28px;}
+#view-word-meaning #oo-start .card h2{font-size:19px;font-weight:700;margin:0;}
+#view-word-meaning #oo-start .card p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6;}
+#view-word-meaning .example{border:1px solid var(--border);border-radius:10px;padding:16px 15px;}
+#view-word-meaning .example small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;}
+#view-word-meaning .example .word-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:2px 0;}
+#view-word-meaning .example .word-row span{border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:14.5px;font-weight:600;}
+#view-word-meaning .example .word-answer{margin-top:10px;font-size:13.5px;text-align:center;}
+
+#view-word-meaning button.primary{
+  background:var(--ink);
+  color:#fff;
+  border:1px solid var(--ink);
+  border-radius:9px;
+  padding:12px 20px;
+  font-size:14.5px;
+  font-weight:600;
+  cursor:pointer;
+  align-self:flex-start;
+}
+#view-word-meaning button.primary:hover{opacity:.85;}
+#view-word-meaning button.primary:active{opacity:.7;}
+#view-word-meaning button.primary:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
+
+#view-word-meaning .card-face{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:26px;
+  text-align:center;
+  transition:box-shadow .3s ease;
+}
+#view-word-meaning .card-face.glow-correct{box-shadow:0 22px 34px -18px var(--correct-glow);}
+#view-word-meaning .card-face.glow-incorrect{box-shadow:0 22px 34px -18px var(--incorrect-glow);}
+
+#view-word-meaning .q-title{font-size:16px;font-weight:700;}
+
+#view-word-meaning .options{display:flex;flex-direction:row;gap:12px;justify-content:center;width:100%;flex-wrap:wrap;}
+#view-word-meaning .option{
+  flex:1;
+  min-width:100px;
+  max-width:170px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:14px 12px;
+  font-size:14.5px;
+  font-weight:600;
+  color:var(--ink);
+  text-align:center;
+  cursor:pointer;
+}
+#view-word-meaning .option:hover:not(:disabled){border-color:var(--border-strong);}
+#view-word-meaning .option:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+#view-word-meaning .option:disabled{cursor:default;}
+@media (max-width:420px){
+  #view-word-meaning .options{flex-direction:column;align-items:center;}
+  #view-word-meaning .option{width:100%;max-width:220px;}
+}
+
+#view-word-meaning .foot-link{
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+  background:none;border:none;cursor:pointer;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  padding:4px;
+}
+
+/* report screen */
+#view-word-meaning .headline{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:26px 26px;
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+#view-word-meaning .score-ring{
+  width:84px;height:84px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:conic-gradient(var(--ink) calc(var(--pct,0)*1%), var(--track) 0);
+  flex:none;
+}
+#view-word-meaning .score-ring .inner{
+  width:64px;height:64px;border-radius:50%;background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+#view-word-meaning .score-ring .inner b{font-size:18px;font-variant-numeric:tabular-nums;}
+#view-word-meaning .score-ring .inner small{font-size:9px;color:var(--muted);letter-spacing:.04em;}
+#view-word-meaning .headline-text h2{font-size:18px;margin:0 0 4px;font-weight:700;}
+#view-word-meaning .headline-text p{margin:0;color:var(--muted);font-size:13.5px;}
+
+#view-word-meaning .section-title{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700;margin:2px 2px 0;}
+
+#view-word-meaning .review-list{display:flex;flex-direction:column;gap:9px;max-height:320px;overflow-y:auto;padding-right:4px;}
+#view-word-meaning .review-item{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px 15px;
+}
+#view-word-meaning .review-item .words{font-size:13.5px;margin-bottom:6px;color:var(--muted);}
+#view-word-meaning .review-item .words b{color:var(--ink);}
+#view-word-meaning .review-item .ans{font-size:12.5px;display:flex;gap:14px;flex-wrap:wrap;}
+#view-word-meaning .review-item .ans .you{color:var(--ink);}
+#view-word-meaning .review-item .ans .correct-ans{color:var(--ink);font-weight:700;}
+
+#view-word-meaning .empty-note{color:var(--muted);font-size:13.5px;text-align:center;padding:14px;}
+
+#view-word-meaning .report-actions{display:flex;justify-content:center;}
+
+#view-hub{margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,'Segoe UI',system-ui,Arial,sans-serif; min-height:100vh; padding:56px 20px 60px;flex-direction:column;align-items:center;}
+
+#view-hub *{box-sizing:border-box;}
+#view-hub .wrap{width:100%;max-width:640px;display:flex;flex-direction:column;gap:26px;}
+
+#view-hub header h1{
+  font-size:26px;
+  font-weight:700;
+  letter-spacing:-.01em;
+  margin:0 0 6px;
+}
+#view-hub header p{
+  margin:0;
+  color:var(--muted);
+  font-size:14.5px;
+  line-height:1.6;
+  max-width:52ch;
+}
+
+#view-hub .section-label{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-weight:700;
+  color:var(--muted);
+  margin:8px 2px 0;
+}
+
+#view-hub .test-list{display:flex;flex-direction:column;gap:12px;}
+
+#view-hub a.test-card{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px 22px;
+  text-decoration:none;
+  color:var(--ink);
+}
+#view-hub a.test-card:hover{border-color:var(--border-strong);}
+#view-hub a.test-card:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
+
+#view-hub .test-icon{
+  flex:none;
+  width:44px;height:44px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:19px;
+}
+
+#view-hub .test-info{flex:1;min-width:0;}
+#view-hub .test-info h2{
+  font-size:17px;
+  font-weight:700;
+  margin:0 0 4px;
+}
+#view-hub .test-info p{
+  margin:0;
+  color:var(--muted);
+  font-size:13.5px;
+  line-height:1.5;
+}
+#view-hub .test-meta{
+  margin-top:8px;
+  display:flex;
+  gap:8px;
+}
+#view-hub .tag{
+  font-size:11px;
+  font-weight:600;
+  color:var(--ink);
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:3px 10px;
+}
+
+#view-hub .test-arrow{
+  flex:none;
+  color:var(--muted);
+  font-size:18px;
+}
+#view-hub a.test-card:hover .test-arrow{color:var(--ink);}
+
+#view-hub .history-link{
+  align-self:center;
+  background:none;
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:11px 20px;
+  font-size:13.5px;
+  font-weight:600;
+  color:var(--ink);
+  text-decoration:none;
+  cursor:pointer;
+}
+#view-hub .history-link:hover{border-color:var(--border-strong);}
+
+#view-hub footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:12.5px;
+  margin-top:8px;
+}
+
+#view-history{margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,'Segoe UI',system-ui,Arial,sans-serif; min-height:100vh; flex-direction:column; align-items:center; padding:36px 20px 48px;flex-direction:column;align-items:center;}
+
+#view-history *{box-sizing:border-box;}
+#view-history .wrap{width:100%;max-width:560px;display:flex;flex-direction:column;gap:20px;}
+
+#view-history .topbar{display:flex;align-items:center;gap:14px;}
+#view-history .icon-btn{
+  flex:none;
+  width:40px;height:40px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--bg);
+  color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;
+  text-decoration:none;
+  cursor:pointer;
+}
+#view-history .icon-btn:hover{border-color:var(--border-strong);}
+#view-history .icon-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+
+#view-history h1.title{font-size:22px;font-weight:700;margin:0;letter-spacing:-.01em;}
+
+#view-history #hist-content{display:flex;flex-direction:column;gap:10px;}
+
+#view-history .section-title{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700;margin:2px 2px 0;}
+
+#view-history .summary-grid{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+#view-history .summary-row{
+  display:flex;align-items:center;gap:12px;
+  padding:13px 16px;
+  border-bottom:1px solid var(--border);
+  font-size:13.5px;
+}
+#view-history .summary-row:last-child{border-bottom:none;}
+#view-history .summary-row .name{flex:1;font-weight:600;}
+#view-history .summary-row .stat{color:var(--muted);font-variant-numeric:tabular-nums;}
+#view-history .summary-row .stat b{color:var(--ink);}
+
+#view-history .entry-list{display:flex;flex-direction:column;gap:9px;}
+#view-history .entry{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:13px 16px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+#view-history .entry .info{flex:1;min-width:0;}
+#view-history .entry .test-name{font-weight:700;font-size:14.5px;}
+#view-history .entry .date{color:var(--muted);font-size:12.5px;margin-top:2px;}
+#view-history .entry .score{
+  flex:none;
+  text-align:right;
+  font-variant-numeric:tabular-nums;
+}
+#view-history .entry .score .frac{font-weight:700;font-size:14.5px;}
+#view-history .entry .score .pct{color:var(--muted);font-size:12px;}
+
+#view-history .empty-note{
+  border:1px solid var(--border);
+  border-radius:12px;
+  color:var(--muted);
+  font-size:14px;
+  text-align:center;
+  padding:32px 20px;
+}
+
+#view-history button.ghost{
+  align-self:flex-start;
+  background:none;
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:10px 16px;
+  font-size:13.5px;
+  font-weight:600;
+  color:var(--ink);
+  cursor:pointer;
+}
+#view-history button.ghost:hover{border-color:var(--border-strong);}
+
+</style>
+</head>
+<body>
+
+<div id="view-hub" class="view active">
+<div class="wrap">
+  <header>
+    <h1>GIA Practice</h1>
+    <p>A small set of home-built drills for the Thomas GIA test. Pick a test below to start a timed session.</p>
+  </header>
+
+  <div class="section-label">Available tests</div>
+  <div class="test-list">
+    <a class="test-card" href="#" onclick="navigate('view-polarity-drill');return false;">
+      <div class="test-icon">&#8646;</div>
+      <div class="test-info">
+        <h2>Polarity Drill</h2>
+        <p>Comparative reasoning: statement about two people on a hidden attribute, then who's faster / taller / more cautious.</p>
+        <div class="test-meta"><span class="tag">3 min test</span><span class="tag">Unlimited questions</span></div>
+      </div>
+      <div class="test-arrow">&rarr;</div>
+    </a>
+
+    <a class="test-card" href="#" onclick="navigate('view-perceptual-speed');return false;">
+      <div class="test-icon">&#9638;</div>
+      <div class="test-info">
+        <h2>Column Match</h2>
+        <p>Perceptual speed: a lowercase letter over an uppercase letter in each column — count how many columns match.</p>
+        <div class="test-meta"><span class="tag">3 min test</span><span class="tag">Unlimited questions</span></div>
+      </div>
+      <div class="test-arrow">&rarr;</div>
+    </a>
+
+    <a class="test-card" href="#" onclick="navigate('view-numbers-speed');return false;">
+      <div class="test-icon">#</div>
+      <div class="test-info">
+        <h2>Furthest Out</h2>
+        <p>Numbers speed and accuracy: three numbers — find the median, then pick whichever end sits further from it.</p>
+        <div class="test-meta"><span class="tag">3 min test</span><span class="tag">Unlimited questions</span></div>
+      </div>
+      <div class="test-arrow">&rarr;</div>
+    </a>
+
+    <a class="test-card" href="#" onclick="navigate('view-spatial-visualization');return false;">
+      <div class="test-icon">&#9635;</div>
+      <div class="test-info">
+        <h2>True Turn</h2>
+        <p>Spatial visualization: two boxes, each with a letter shown twice — rotated counts as the same, mirrored doesn't.</p>
+        <div class="test-meta"><span class="tag">3 min test</span><span class="tag">Unlimited questions</span></div>
+      </div>
+      <div class="test-arrow">&rarr;</div>
+    </a>
+
+    <a class="test-card" href="#" onclick="navigate('view-word-meaning');return false;">
+      <div class="test-icon">&#171;&#187;</div>
+      <div class="test-info">
+        <h2>Odd One Out</h2>
+        <p>Word meaning: three words, two related by meaning, opposite, or category — pick the one that doesn't belong.</p>
+        <div class="test-meta"><span class="tag">3 min test</span><span class="tag">Unlimited questions</span></div>
+      </div>
+      <div class="test-arrow">&rarr;</div>
+    </a>
+
+  </div>
+
+  <a class="history-link" href="#" onclick="navigate('view-history');return false;">See results history</a>
+
+  <footer>Built by Ajit &middot; Thomas GIA practice, runs entirely offline in your browser</footer>
+</div>
+</div>
+<div id="view-polarity-drill" class="view">
+<div class="wrap">
+  <div class="topbar">
+    <a class="icon-btn" href="#" onclick="navigate('view-hub');return false;" aria-label="Back to all tests">&larr;</a>
+    <div class="progress-track"><div class="progress-fill" id="pd-progressFill"></div></div>
+  </div>
+  <div class="status-row" id="pd-statusRow" style="display:none;">
+    <span id="pd-scoreText">0 correct / 0</span>
+    <span id="pd-timerText">3:00</span>
+  </div>
+
+  <div class="stage">
+
+    <section class="screen active" id="pd-start">
+      <h1 class="title">Polarity Drill</h1>
+      <p class="subtitle">Comparative reasoning practice, Thomas GIA format.</p>
+      <div class="card">
+        <h2>Who's faster than whom?</h2>
+        <p>A three-minute test. Each question shows a statement comparing two people on a hidden attribute, then asks who holds some property. Answer as many as you can before the clock runs out.</p>
+        <div class="example">
+          <small>Sample question</small>
+          Elias is not as slow as Priya. → <b>Who is quicker?</b>
+        </div>
+        <button class="primary" id="pd-startBtn">Start 3-minute test</button>
+      </div>
+    </section>
+
+    <section class="screen" id="pd-statementScreen">
+      <div class="card card-face" id="pd-statementFace">
+        <div class="prompt" id="pd-statementText"></div>
+        <button class="primary" id="pd-showQBtn" style="align-self:center;">Show the question</button>
+      </div>
+    </section>
+
+    <section class="screen" id="pd-questionScreen">
+      <div class="card card-face" id="pd-questionFace">
+        <div class="prompt" id="pd-questionText"></div>
+        <div class="options" id="pd-optionsBox"></div>
+      </div>
+    </section>
+
+    <section class="screen" id="pd-report">
+      <h1 class="title">Test report</h1>
+      <div class="headline">
+        <div class="score-ring" id="pd-scoreRing"><div class="inner"><b id="pd-ringPct">0%</b><small>ACCURACY</small></div></div>
+        <div class="headline-text">
+          <h2 id="pd-reportHeadline">Time's up.</h2>
+          <p id="pd-reportSub"></p>
+        </div>
+      </div>
+
+      <div class="section-title">Missed questions</div>
+      <div class="review-list" id="pd-reviewList"></div>
+
+      <div class="report-actions">
+        <button class="primary" id="pd-restartBtn">Run another test</button>
+      </div>
+    </section>
+
+  </div>
+
+  <button class="foot-link" id="pd-endEarly" style="display:none;">End test now</button>
+</div>
+
+</div>
+<div id="view-perceptual-speed" class="view">
+<div class="wrap">
+  <div class="topbar">
+    <a class="icon-btn" href="#" onclick="navigate('view-hub');return false;" aria-label="Back to all tests">&larr;</a>
+    <div class="progress-track"><div class="progress-fill" id="cm-progressFill"></div></div>
+  </div>
+  <div class="status-row" id="cm-statusRow" style="display:none;">
+    <span id="cm-scoreText">0 correct / 0</span>
+    <span id="cm-timerText">3:00</span>
+  </div>
+
+  <div class="stage">
+
+    <section class="screen active" id="cm-start">
+      <h1 class="title">Column Match</h1>
+      <p class="subtitle">Perceptual speed practice, Thomas GIA format.</p>
+      <div class="card">
+        <h2>How many columns have the same letter?</h2>
+        <p>A three-minute test. Each question shows a lowercase letter above an uppercase letter in each column. Case doesn't matter — "r" and "R" are the same letter. Count the matching columns and answer as fast as you can.</p>
+        <div class="example">
+          <small>Sample question</small>
+          <div class="grid-row lower"><span>r</span><span>j</span><span>e</span><span>p</span></div>
+          <div class="grid-row upper"><span>R</span><span>P</span><span>L</span><span>P</span></div>
+          <div class="grid-answer">r/R match, p/P match &rarr; <b>2</b></div>
+        </div>
+        <button class="primary" id="cm-startBtn">Start 3-minute test</button>
+      </div>
+    </section>
+
+    <section class="screen" id="cm-quizScreen">
+      <div class="card card-face" id="cm-quizFace">
+        <div class="q-title">How many columns have the same letter?</div>
+        <div class="grid-wrap">
+          <div class="grid-row lower" id="cm-lowerRow"></div>
+          <div class="grid-row upper" id="cm-upperRow"></div>
+        </div>
+        <div class="options" id="cm-optionsBox"></div>
+      </div>
+    </section>
+
+    <section class="screen" id="cm-report">
+      <h1 class="title">Test report</h1>
+      <div class="headline">
+        <div class="score-ring" id="cm-scoreRing"><div class="inner"><b id="cm-ringPct">0%</b><small>ACCURACY</small></div></div>
+        <div class="headline-text">
+          <h2 id="cm-reportHeadline">Time's up.</h2>
+          <p id="cm-reportSub"></p>
+        </div>
+      </div>
+
+      <div class="section-title">Missed questions</div>
+      <div class="review-list" id="cm-reviewList"></div>
+
+      <div class="report-actions">
+        <button class="primary" id="cm-restartBtn">Run another test</button>
+      </div>
+    </section>
+
+  </div>
+
+  <button class="foot-link" id="cm-endEarly" style="display:none;">End test now</button>
+</div>
+
+</div>
+<div id="view-numbers-speed" class="view">
+<div class="wrap">
+  <div class="topbar">
+    <a class="icon-btn" href="#" onclick="navigate('view-hub');return false;" aria-label="Back to all tests">&larr;</a>
+    <div class="progress-track"><div class="progress-fill" id="fo-progressFill"></div></div>
+  </div>
+  <div class="status-row" id="fo-statusRow" style="display:none;">
+    <span id="fo-scoreText">0 correct / 0</span>
+    <span id="fo-timerText">3:00</span>
+  </div>
+
+  <div class="stage">
+
+    <section class="screen active" id="fo-start">
+      <h1 class="title">Furthest Out</h1>
+      <p class="subtitle">Numbers speed and accuracy practice, Thomas GIA format.</p>
+      <div class="card">
+        <h2>Which number is furthest from the median?</h2>
+        <p>A three-minute test. Each question shows three numbers. Find the middle one, then decide whether the highest or the lowest number sits further away from it. No calculator, just quick comparison.</p>
+        <div class="example">
+          <small>Sample question</small>
+          <div class="num-row"><span>11</span><span>14</span><span>4</span></div>
+          <div class="num-answer">Median is 11. |14&minus;11|=3, |4&minus;11|=7 &rarr; <b>4</b></div>
+        </div>
+        <button class="primary" id="fo-startBtn">Start 3-minute test</button>
+      </div>
+    </section>
+
+    <section class="screen" id="fo-quizScreen">
+      <div class="card card-face" id="fo-quizFace">
+        <div class="q-title">Which number is furthest from the median?</div>
+        <div class="options" id="fo-optionsBox"></div>
+      </div>
+    </section>
+
+    <section class="screen" id="fo-report">
+      <h1 class="title">Test report</h1>
+      <div class="headline">
+        <div class="score-ring" id="fo-scoreRing"><div class="inner"><b id="fo-ringPct">0%</b><small>ACCURACY</small></div></div>
+        <div class="headline-text">
+          <h2 id="fo-reportHeadline">Time's up.</h2>
+          <p id="fo-reportSub"></p>
+        </div>
+      </div>
+
+      <div class="section-title">Missed questions</div>
+      <div class="review-list" id="fo-reviewList"></div>
+
+      <div class="report-actions">
+        <button class="primary" id="fo-restartBtn">Run another test</button>
+      </div>
+    </section>
+
+  </div>
+
+  <button class="foot-link" id="fo-endEarly" style="display:none;">End test now</button>
+</div>
+
+</div>
+<div id="view-spatial-visualization" class="view">
+<div class="wrap">
+  <div class="topbar">
+    <a class="icon-btn" href="#" onclick="navigate('view-hub');return false;" aria-label="Back to all tests">&larr;</a>
+    <div class="progress-track"><div class="progress-fill" id="tt-progressFill"></div></div>
+  </div>
+  <div class="status-row" id="tt-statusRow" style="display:none;">
+    <span id="tt-scoreText">0 correct / 0</span>
+    <span id="tt-timerText">3:00</span>
+  </div>
+
+  <div class="stage">
+
+    <section class="screen active" id="tt-start">
+      <h1 class="title">True Turn</h1>
+      <p class="subtitle">Spatial visualization practice, Thomas GIA format.</p>
+      <div class="card">
+        <h2>How many boxes have the same letter?</h2>
+        <p>A three-minute test. Each box shows a letter twice — once plain, once turned. A letter that's just rotated still counts as the same letter. A letter that's been mirrored (flipped, like in a mirror) does not, even if it's spun around too.</p>
+        <div class="example">
+          <small>Sample question</small>
+          <div class="boxes-row">
+            <div class="letter-box"><span class="glyph" style="transform:rotate(90deg);">S</span><span class="glyph">S</span></div>
+            <div class="letter-box"><span class="glyph" style="transform:scaleX(-1);">S</span><span class="glyph">S</span></div>
+          </div>
+          <div class="box-answer">Box 1 is just rotated — same letter. Box 2 is mirrored — not the same. &rarr; <b>1</b></div>
+        </div>
+        <button class="primary" id="tt-startBtn">Start 3-minute test</button>
+      </div>
+    </section>
+
+    <section class="screen" id="tt-quizScreen">
+      <div class="card card-face" id="tt-quizFace">
+        <div class="q-title">How many boxes have the same letter?</div>
+        <div class="q-sub">Rotated letters count as the same. Mirrored letters don't.</div>
+        <div class="boxes-row" id="tt-boxesRow"></div>
+        <div class="options" id="tt-optionsBox"></div>
+      </div>
+    </section>
+
+    <section class="screen" id="tt-report">
+      <h1 class="title">Test report</h1>
+      <div class="headline">
+        <div class="score-ring" id="tt-scoreRing"><div class="inner"><b id="tt-ringPct">0%</b><small>ACCURACY</small></div></div>
+        <div class="headline-text">
+          <h2 id="tt-reportHeadline">Time's up.</h2>
+          <p id="tt-reportSub"></p>
+        </div>
+      </div>
+
+      <div class="section-title">Missed questions</div>
+      <div class="review-list" id="tt-reviewList"></div>
+
+      <div class="report-actions">
+        <button class="primary" id="tt-restartBtn">Run another test</button>
+      </div>
+    </section>
+
+  </div>
+
+  <button class="foot-link" id="tt-endEarly" style="display:none;">End test now</button>
+</div>
+
+</div>
+<div id="view-word-meaning" class="view">
+<div class="wrap">
+  <div class="topbar">
+    <a class="icon-btn" href="#" onclick="navigate('view-hub');return false;" aria-label="Back to all tests">&larr;</a>
+    <div class="progress-track"><div class="progress-fill" id="oo-progressFill"></div></div>
+  </div>
+  <div class="status-row" id="oo-statusRow" style="display:none;">
+    <span id="oo-scoreText">0 correct / 0</span>
+    <span id="oo-timerText">3:00</span>
+  </div>
+
+  <div class="stage">
+
+    <section class="screen active" id="oo-start">
+      <h1 class="title">Odd One Out</h1>
+      <p class="subtitle">Word meaning practice, Thomas GIA format.</p>
+      <div class="card">
+        <h2>Which word doesn't belong?</h2>
+        <p>A three-minute test. Each question shows three words. Two are related — by meaning, by opposite, or by category — and one doesn't fit. Pick the one that doesn't belong.</p>
+        <div class="example">
+          <small>Sample question</small>
+          <div class="word-row"><span>Lion</span><span>Intelligent</span><span>Cheetah</span></div>
+          <div class="word-answer">Lion and Cheetah are both animals &rarr; <b>Intelligent</b></div>
+        </div>
+        <button class="primary" id="oo-startBtn">Start 3-minute test</button>
+      </div>
+    </section>
+
+    <section class="screen" id="oo-quizScreen">
+      <div class="card card-face" id="oo-quizFace">
+        <div class="q-title">Which word doesn't belong?</div>
+        <div class="options" id="oo-optionsBox"></div>
+      </div>
+    </section>
+
+    <section class="screen" id="oo-report">
+      <h1 class="title">Test report</h1>
+      <div class="headline">
+        <div class="score-ring" id="oo-scoreRing"><div class="inner"><b id="oo-ringPct">0%</b><small>ACCURACY</small></div></div>
+        <div class="headline-text">
+          <h2 id="oo-reportHeadline">Time's up.</h2>
+          <p id="oo-reportSub"></p>
+        </div>
+      </div>
+
+      <div class="section-title">Missed questions</div>
+      <div class="review-list" id="oo-reviewList"></div>
+
+      <div class="report-actions">
+        <button class="primary" id="oo-restartBtn">Run another test</button>
+      </div>
+    </section>
+
+  </div>
+
+  <button class="foot-link" id="oo-endEarly" style="display:none;">End test now</button>
+</div>
+
+</div>
+<div id="view-history" class="view">
+<div class="wrap">
+  <div class="topbar">
+    <a class="icon-btn" href="#" onclick="navigate('view-hub');return false;" aria-label="Back to all tests">&larr;</a>
+    <h1 class="title">Results History</h1>
+  </div>
+
+  <div id="hist-content"></div>
+
+  <button class="ghost" id="hist-clearBtn" style="display:none;">Clear history</button>
+</div>
+</div>
+
+<script>
+
+var VIEW_PREFIX = {
+  'view-polarity-drill':'pd','view-perceptual-speed':'cm','view-numbers-speed':'fo',
+  'view-spatial-visualization':'tt','view-word-meaning':'oo','view-history':'hist'
+};
+function stopAllTests(){
+  ['pd','cm','fo','tt','oo'].forEach(function(p){ if(window['__stop_'+p]) window['__stop_'+p](); });
+}
+function navigate(viewId){
+  stopAllTests();
+  var resetKey = '__reset_' + (VIEW_PREFIX[viewId]||'');
+  if(window[resetKey]) window[resetKey]();
+  document.querySelectorAll('.view').forEach(function(v){ v.classList.remove('active'); });
+  document.getElementById(viewId).classList.add('active');
+  window.scrollTo(0,0);
+  history.replaceState(null,'','#'+viewId);
+}
+window.addEventListener('load', function(){
+  var initial = (location.hash||'').slice(1);
+  var valid = ['view-hub','view-history','view-polarity-drill','view-perceptual-speed','view-numbers-speed','view-spatial-visualization','view-word-meaning'];
+  navigate(valid.includes(initial) ? initial : 'view-hub');
+});
+
+(function(){
+
+/* ---------------- Data: axes, names, template grammar ---------------- */
+/* Kept to plain, easy-to-read first names on purpose -- ornate or archaic
+   ones (Wilhelmina, Saoirse, Osric, ...) slow down a timed reading test
+   without adding anything, so simple and quick-to-parse wins over variety. */
+const NAMES = ["Adrian","Bianca","Calvin","Daniela","Ewan","Farah","Gideon","Hana","Ishaan","Jocelyn",
+  "Kwame","Lior","Nadia","Omar","Priya","Quentin","Sami","Tobias","Uma","Viktor",
+  "Wren","Yusuf","Zara","Anton","Cyrus","Elias","Harriet","Idris","Junko","Kaveh",
+  "Leilani","Mateo","Noor","Petra","Rahul","Valentina","Yolanda","Aisha","Chiara","Dmitri",
+  "Faisal","Greta","Hiroshi","Imogen","Jamal","Keiko","Luca","Miriam","Niamh","Otto",
+  "Paloma","Reza","Renata","Soren","Tariq","Valeria","Yara"];
+
+function W(base,comparative,superlative){return {base,comparative,superlative};}
+
+/* Kept deliberately plain -- every real Thomas GIA example uses everyday
+   words (tall/short, heavy/light, clever/dull, happy/sad, near/far, good/bad).
+   The difficulty in the real test comes from the logic, not the vocabulary,
+   so no SAT-word synonyms here -- at most one everyday alternate per side. */
+const AXES = [
+  {id:"speed", a:[W("fast","faster","fastest"),W("quick","quicker","quickest")],
+              b:[W("slow","slower","slowest")]},
+  {id:"height", a:[W("tall","taller","tallest")], b:[W("short","shorter","shortest")]},
+  {id:"weight", a:[W("heavy","heavier","heaviest")], b:[W("light","lighter","lightest")]},
+  {id:"strength", a:[W("strong","stronger","strongest")], b:[W("weak","weaker","weakest")]},
+  {id:"intelligence", a:[W("clever","cleverer","cleverest"),W("bright","brighter","brightest"),W("smart","smarter","smartest")],
+                      b:[W("dull","duller","dullest")]},
+  {id:"happiness", a:[W("happy","happier","happiest")], b:[W("sad","sadder","saddest")]},
+  {id:"age", a:[W("old","older","oldest")], b:[W("young","younger","youngest")]},
+  {id:"distance", a:[W("far","farther","farthest")], b:[W("near","nearer","nearest")]},
+  {id:"goodness", a:[W("good","better","best")], b:[W("bad","worse","worst")]},
+  {id:"wisdom", a:[W("wise","wiser","wisest")], b:[W("foolish","more foolish","most foolish")]},
+  {id:"calm", a:[W("calm","calmer","calmest")], b:[W("anxious","more anxious","most anxious"),W("nervous","more nervous","most nervous")]},
+  {id:"patience", a:[W("patient","more patient","most patient")], b:[W("impatient","more impatient","most impatient")]},
+  {id:"caution", a:[W("cautious","more cautious","most cautious"),W("careful","more careful","most careful")],
+                b:[W("reckless","more reckless","most reckless"),W("careless","more careless","most careless")]},
+  {id:"honesty", a:[W("honest","more honest","most honest")], b:[W("dishonest","more dishonest","most dishonest")]},
+  {id:"generosity", a:[W("generous","more generous","most generous")], b:[W("stingy","stingier","stingiest")]},
+  {id:"diligence", a:[W("hardworking","more hardworking","most hardworking")], b:[W("lazy","lazier","laziest")]},
+  {id:"openness", a:[W("outgoing","more outgoing","most outgoing")], b:[W("shy","shyer","shyest")]},
+  {id:"politeness", a:[W("polite","more polite","most polite")], b:[W("rude","ruder","rudest")]},
+  {id:"size", a:[W("big","bigger","biggest"),W("large","larger","largest")], b:[W("small","smaller","smallest")]},
+  {id:"courage", a:[W("brave","braver","bravest")], b:[W("afraid","more afraid","most afraid"),W("timid","more timid","most timid")]},
+  {id:"wealth", a:[W("rich","richer","richest")], b:[W("poor","poorer","poorest")]},
+  {id:"friendliness", a:[W("friendly","friendlier","friendliest")], b:[W("unfriendly","more unfriendly","most unfriendly")]},
+  {id:"humor", a:[W("funny","funnier","funniest")], b:[W("serious","more serious","most serious")]},
+  {id:"tidiness", a:[W("tidy","tidier","tidiest")], b:[W("messy","messier","messiest")]},
+  {id:"loudness", a:[W("loud","louder","loudest")], b:[W("quiet","quieter","quietest")]}
+];
+
+/* ---------------- Helpers ---------------- */
+const rnd = n => Math.floor(Math.random()*n);
+const pick = arr => arr[rnd(arr.length)];
+function pickNames(count){
+  const pool=[...NAMES], out=[];
+  for(let i=0;i<count;i++){ out.push(pool.splice(rnd(pool.length),1)[0]); }
+  return out;
+}
+function pickWord(axis, poleLetter){
+  const list = poleLetter==='a'?axis.a:axis.b;
+  return pick(list);
+}
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+/* ---------------- Statement templates (pair items) ---------------- */
+/* base_sign encodes how the chosen word's pole maps to person A's polarity */
+const STATEMENT_TEMPLATES = [
+  {id:"cmp_pole", baseSign:1, form:"comparative", build:(A,B,w)=>`${A} is ${w.comparative} than ${B}.`, weight:0.55},
+  {id:"not_as_pole", baseSign:-1, form:"base", build:(A,B,w)=>`${A} is not as ${w.base} as ${B}.`, weight:0.28},
+  {id:"not_any_less", baseSign:1, form:"base", build:(A,B,w)=>`${A} is not any less ${w.base} than ${B}.`, weight:0.17}
+];
+function weightedTemplate(){
+  let r=Math.random(), acc=0;
+  for(const t of STATEMENT_TEMPLATES){ acc+=t.weight; if(r<=acc) return t; }
+  return STATEMENT_TEMPLATES[0];
+}
+
+const QUESTION_TEMPLATES = [
+  {id:"more", modifierSign:1, form:"comparative", build:w=>`Who is ${w.comparative}?`},
+  {id:"less", modifierSign:-1, form:"base", build:w=>`Who is less ${w.base}?`}
+];
+
+/* ---------------- Item generator ----------------
+   Matches the confirmed Thomas GIA format exactly: one statement about
+   two people on one hidden trait, one question, two name options.
+   No ties, no "Cannot be determined", no multi-statement chains --
+   none of those appear in the real test's published examples. */
+function generateItem(){
+  const axis = pick(AXES);
+  const template = weightedTemplate();
+  const pole = Math.random()<0.5?'a':'b';
+  const word = pickWord(axis, pole);
+  const [A,B] = pickNames(2);
+  const wordPoleSign = pole==='a'?1:-1;
+  const personAPolarity = template.baseSign * wordPoleSign; // always +1 or -1
+  const statement = template.build(A,B,word);
+
+  const qTemplate = pick(QUESTION_TEMPLATES);
+  const qPole = Math.random()<0.5?'a':'b';
+  const qWord = pickWord(axis, qPole);
+  const qWordSign = qPole==='a'?1:-1;
+  const desired = qWordSign * qTemplate.modifierSign;
+  const question = qTemplate.build(qWord);
+
+  const answer = desired===personAPolarity ? A : B;
+  return {axis:axis.id, statement, question, options: shuffle([A,B]), answer};
+}
+
+/* ---------------- App state & UI wiring ---------------- */
+const TEST_NAME = 'Polarity Drill';
+const RESULTS_KEY = 'giaPracticeResults';
+function saveResult(){
+  if(total===0) return;
+  try{
+    const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100)});
+    while(arr.length>200) arr.shift();
+    localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
+  }catch(e){ /* localStorage unavailable -- fail silently */ }
+}
+
+const el = id=>document.getElementById(id);
+const screens = { start: el('pd-start'), statement: el('pd-statementScreen'), question: el('pd-questionScreen'), report: el('pd-report') };
+function showScreen(name){
+  Object.values(screens).forEach(s=>s.classList.remove('active'));
+  screens[name].classList.add('active');
+}
+
+let current = null;
+let score = 0, total = 0;
+let history = []; // {axis, statement, question, chosen, answer, correct}
+let timeLeft = 180;
+const ROUND_SECONDS = 180;
+let timerId = null;
+let advanceTimer = null;
+let answered = false;
+let lastCorrect = null; // carries the previous answer's glow briefly onto the next card
+
+function fmtTime(s){
+  const m=Math.floor(s/60), r=s%60;
+  return `${m}:${String(r).padStart(2,'0')}`;
+}
+
+function updateHud(){
+  el('pd-scoreText').textContent = `${score} correct / ${total}`;
+  el('pd-timerText').textContent = fmtTime(timeLeft);
+  const pct = Math.min(100, Math.round(((ROUND_SECONDS-timeLeft)/ROUND_SECONDS)*100));
+  el('pd-progressFill').style.width = pct+'%';
+}
+
+function startTimer(){
+  timerId = setInterval(()=>{
+    timeLeft--;
+    updateHud();
+    if(timeLeft<=0){
+      clearInterval(timerId);
+      finishRound();
+    }
+  },1000);
+}
+
+function nextRound(){
+  current = generateItem();
+  answered = false;
+  el('pd-questionFace').classList.remove('glow-correct','glow-incorrect');
+  el('pd-statementText').textContent = current.statement;
+  el('pd-questionText').textContent = current.question;
+  const box = el('pd-optionsBox');
+  box.innerHTML = '';
+  current.options.forEach(opt=>{
+    const b = document.createElement('button');
+    b.className='option';
+    b.textContent = opt;
+    b.addEventListener('click', ()=>selectOption(b, opt));
+    box.appendChild(b);
+  });
+  showScreen('statement');
+
+  // let the previous answer's glow briefly carry onto this new statement
+  // card, then fade it out -- mirrors the reference app's transition.
+  const face = el('pd-statementFace');
+  face.classList.remove('glow-correct','glow-incorrect');
+  if(lastCorrect !== null){
+    face.classList.add(lastCorrect ? 'glow-correct' : 'glow-incorrect');
+    setTimeout(()=>{ face.classList.remove('glow-correct','glow-incorrect'); }, 500);
+    lastCorrect = null;
+  }
+}
+
+function selectOption(btn, opt){
+  if(answered) return;
+  answered = true;
+  total++;
+  const correct = opt === current.answer;
+  if(correct) score++;
+
+  history.push({statement:current.statement, question:current.question, chosen:opt, answer:current.answer, correct});
+
+  [...el('pd-optionsBox').children].forEach(b=>{ b.disabled = true; });
+  el('pd-questionFace').classList.add(correct ? 'glow-correct' : 'glow-incorrect');
+  lastCorrect = correct;
+
+  updateHud();
+  if(timeLeft>0){
+    advanceTimer = setTimeout(()=>{ if(timeLeft>0) nextRound(); }, 650);
+  }
+}
+
+function finishRound(){
+  clearInterval(timerId);
+  saveResult();
+  el('pd-statusRow').style.display='none';
+  el('pd-endEarly').style.display='none';
+
+  const pct = total ? Math.round((score/total)*100) : 0;
+  el('pd-ringPct').textContent = pct+'%';
+  el('pd-scoreRing').style.setProperty('--pct', pct);
+  el('pd-reportHeadline').textContent = total ? `${score} of ${total} correct.` : `No questions attempted.`;
+  el('pd-reportSub').textContent = total
+    ? (pct>=80 ? "Strong run. The misses below are worth a second look." : "Review the missed questions below, then run it again.")
+    : "Hit start and answer a few before the clock runs out.";
+
+  const list = el('pd-reviewList');
+  list.innerHTML = '';
+  const missed = history.filter(h=>!h.correct);
+  if(missed.length===0){
+    list.innerHTML = `<div class="empty-note">${total? "No misses — clean test." : "Nothing to review yet."}</div>`;
+  } else {
+    missed.forEach(h=>{
+      const item = document.createElement('div');
+      item.className='review-item';
+      item.innerHTML = `<div class="stmt">${h.statement}</div><div class="q">${h.question}</div><div class="ans"><span class="you">You said: ${h.chosen}</span><span class="correct-ans">Correct: ${h.answer}</span></div>`;
+      list.appendChild(item);
+    });
+  }
+
+  showScreen('report');
+}
+
+el('pd-startBtn').addEventListener('click', ()=>{
+  score=0; total=0; history=[]; timeLeft=ROUND_SECONDS;
+  el('pd-statusRow').style.display='flex';
+  el('pd-endEarly').style.display='inline-block';
+  updateHud();
+  startTimer();
+  nextRound();
+});
+
+el('pd-showQBtn').addEventListener('click', ()=>{ showScreen('question'); });
+el('pd-restartBtn').addEventListener('click', ()=>{ showScreen('start'); });
+el('pd-endEarly').addEventListener('click', ()=>{ if(timerId) finishRound(); });
+
+
+window.__stop_pd = function(){ if(timerId){ clearInterval(timerId); timerId=null; } if(advanceTimer){ clearTimeout(advanceTimer); advanceTimer=null; } };
+window.__reset_pd = function(){ window.__stop_pd(); showScreen('start'); el('pd-statusRow').style.display='none'; el('pd-endEarly').style.display='none'; };
+})();
+(function(){
+
+const COLUMNS = 4;
+const ALPHABET = "abcdefghijklmnopqrstuvwxyz".split('');
+const rnd = n => Math.floor(Math.random()*n);
+const pickLetter = () => ALPHABET[rnd(ALPHABET.length)];
+
+/* ---------------- Item generator ----------------
+   4 columns, one lowercase letter over one uppercase letter each. Each
+   column independently matches (same letter, case-insensitive) or not,
+   so the match count varies naturally across 0..4 rather than being
+   forced to a fixed distribution. */
+function generateItem(){
+  const lower = [], upper = [];
+  for(let i=0;i<COLUMNS;i++){
+    const l = pickLetter();
+    lower.push(l);
+    if(Math.random() < 0.5){
+      upper.push(l.toUpperCase());
+    } else {
+      let u;
+      do{ u = pickLetter(); }while(u===l);
+      upper.push(u.toUpperCase());
+    }
+  }
+  const answer = lower.reduce((n,l,i)=> n + (l.toUpperCase()===upper[i] ? 1 : 0), 0);
+  return {lower, upper, answer};
+}
+
+const TEST_NAME = 'Column Match';
+const RESULTS_KEY = 'giaPracticeResults';
+function saveResult(){
+  if(total===0) return;
+  try{
+    const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100)});
+    while(arr.length>200) arr.shift();
+    localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
+  }catch(e){ /* localStorage unavailable -- fail silently */ }
+}
+
+/* ---------------- App state & UI wiring ---------------- */
+const el = id=>document.getElementById(id);
+const screens = { start: el('cm-start'), quiz: el('cm-quizScreen'), report: el('cm-report') };
+function showScreen(name){
+  Object.values(screens).forEach(s=>s.classList.remove('active'));
+  screens[name].classList.add('active');
+}
+
+let current = null;
+let score = 0, total = 0;
+let history = []; // {lower, upper, chosen, answer, correct}
+let timeLeft = 180;
+const ROUND_SECONDS = 180;
+let timerId = null;
+let advanceTimer = null;
+let answered = false;
+let lastCorrect = null;
+
+function fmtTime(s){
+  const m=Math.floor(s/60), r=s%60;
+  return `${m}:${String(r).padStart(2,'0')}`;
+}
+
+function updateHud(){
+  el('cm-scoreText').textContent = `${score} correct / ${total}`;
+  el('cm-timerText').textContent = fmtTime(timeLeft);
+  const pct = Math.min(100, Math.round(((ROUND_SECONDS-timeLeft)/ROUND_SECONDS)*100));
+  el('cm-progressFill').style.width = pct+'%';
+}
+
+function startTimer(){
+  timerId = setInterval(()=>{
+    timeLeft--;
+    updateHud();
+    if(timeLeft<=0){
+      clearInterval(timerId);
+      finishRound();
+    }
+  },1000);
+}
+
+function renderRow(containerId, letters){
+  const el2 = el(containerId);
+  el2.innerHTML = '';
+  letters.forEach(ch=>{
+    const span = document.createElement('span');
+    span.className = 'grid-cell';
+    span.textContent = ch;
+    el2.appendChild(span);
+  });
+}
+
+function nextRound(){
+  current = generateItem();
+  answered = false;
+  renderRow('cm-lowerRow', current.lower);
+  renderRow('cm-upperRow', current.upper);
+
+  const box = el('cm-optionsBox');
+  box.innerHTML = '';
+  for(let n=0; n<=COLUMNS; n++){
+    const b = document.createElement('button');
+    b.className='option';
+    b.textContent = n;
+    b.addEventListener('click', ()=>selectOption(b, n));
+    box.appendChild(b);
+  }
+  showScreen('quiz');
+
+  const face = el('cm-quizFace');
+  face.classList.remove('glow-correct','glow-incorrect');
+  if(lastCorrect !== null){
+    face.classList.add(lastCorrect ? 'glow-correct' : 'glow-incorrect');
+    setTimeout(()=>{ face.classList.remove('glow-correct','glow-incorrect'); }, 500);
+    lastCorrect = null;
+  }
+}
+
+function selectOption(btn, n){
+  if(answered) return;
+  answered = true;
+  total++;
+  const correct = n === current.answer;
+  if(correct) score++;
+
+  history.push({lower:current.lower, upper:current.upper, chosen:n, answer:current.answer, correct});
+
+  [...el('cm-optionsBox').children].forEach(b=>{ b.disabled = true; });
+  el('cm-quizFace').classList.add(correct ? 'glow-correct' : 'glow-incorrect');
+  lastCorrect = correct;
+
+  updateHud();
+  if(timeLeft>0){
+    advanceTimer = setTimeout(()=>{ if(timeLeft>0) nextRound(); }, 500);
+  }
+}
+
+function finishRound(){
+  clearInterval(timerId);
+  saveResult();
+  el('cm-statusRow').style.display='none';
+  el('cm-endEarly').style.display='none';
+
+  const pct = total ? Math.round((score/total)*100) : 0;
+  el('cm-ringPct').textContent = pct+'%';
+  el('cm-scoreRing').style.setProperty('--pct', pct);
+  el('cm-reportHeadline').textContent = total ? `${score} of ${total} correct.` : `No questions attempted.`;
+  el('cm-reportSub').textContent = total
+    ? (pct>=80 ? "Strong run. The misses below are worth a second look." : "Review the missed questions below, then run it again.")
+    : "Hit start and answer a few before the clock runs out.";
+
+  const list = el('cm-reviewList');
+  list.innerHTML = '';
+  const missed = history.filter(h=>!h.correct);
+  if(missed.length===0){
+    list.innerHTML = `<div class="empty-note">${total? "No misses — clean test." : "Nothing to review yet."}</div>`;
+  } else {
+    missed.forEach(h=>{
+      const item = document.createElement('div');
+      item.className='review-item';
+      item.innerHTML = `
+        <div class="mini-grid">
+          <div class="mini-row lower">${h.lower.map(c=>`<span>${c}</span>`).join('')}</div>
+          <div class="mini-row upper">${h.upper.map(c=>`<span>${c}</span>`).join('')}</div>
+        </div>
+        <div class="ans"><span class="you">You said: ${h.chosen}</span><span class="correct-ans">Correct: ${h.answer}</span></div>`;
+      list.appendChild(item);
+    });
+  }
+
+  showScreen('report');
+}
+
+el('cm-startBtn').addEventListener('click', ()=>{
+  score=0; total=0; history=[]; timeLeft=ROUND_SECONDS;
+  el('cm-statusRow').style.display='flex';
+  el('cm-endEarly').style.display='inline-block';
+  updateHud();
+  startTimer();
+  nextRound();
+});
+
+el('cm-restartBtn').addEventListener('click', ()=>{ showScreen('start'); });
+el('cm-endEarly').addEventListener('click', ()=>{ if(timerId) finishRound(); });
+
+
+window.__stop_cm = function(){ if(timerId){ clearInterval(timerId); timerId=null; } if(advanceTimer){ clearTimeout(advanceTimer); advanceTimer=null; } };
+window.__reset_cm = function(){ window.__stop_cm(); showScreen('start'); el('cm-statusRow').style.display='none'; el('cm-endEarly').style.display='none'; };
+})();
+(function(){
+
+const rnd = n => Math.floor(Math.random()*n);
+
+/* ---------------- Item generator ----------------
+   Confirmed format: three distinct numbers; find the median (middle
+   value), then whichever of the other two is numerically further from
+   it is the answer. Ties are regenerated so the answer is unambiguous. */
+function generateItem(){
+  for(let attempt=0; attempt<20; attempt++){
+    // Confirmed against the official Thomas booklet's own examples
+    // (4,2,8 / 12,3,5 / 5,7,10 / 9,4,13 / 8,21,15 / 16,7,11) -- nothing
+    // there goes past two digits, the largest value shown is 21. This is
+    // a speed test, so numbers stay small enough to compare at a glance.
+    const nums = new Set();
+    while(nums.size < 3){ nums.add(1 + rnd(30)); }
+    const arr = [...nums];
+    const sorted = [...arr].sort((a,b)=>a-b);
+    const [lo, mid, hi] = sorted;
+    const loDist = mid - lo;
+    const hiDist = hi - mid;
+    if(loDist === hiDist) continue; // ambiguous, try again
+    const answer = loDist > hiDist ? lo : hi;
+
+    // shuffle display order so the answer isn't always in the same slot
+    const options = [...arr];
+    for(let i=options.length-1;i>0;i--){ const j=rnd(i+1); [options[i],options[j]]=[options[j],options[i]]; }
+
+    return {options, median:mid, answer};
+  }
+  // extremely unlikely fallback
+  return {options:[1,2,4], median:2, answer:4};
+}
+
+const TEST_NAME = 'Furthest Out';
+const RESULTS_KEY = 'giaPracticeResults';
+function saveResult(){
+  if(total===0) return;
+  try{
+    const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100)});
+    while(arr.length>200) arr.shift();
+    localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
+  }catch(e){ /* localStorage unavailable -- fail silently */ }
+}
+
+/* ---------------- App state & UI wiring ---------------- */
+const el = id=>document.getElementById(id);
+const screens = { start: el('fo-start'), quiz: el('fo-quizScreen'), report: el('fo-report') };
+function showScreen(name){
+  Object.values(screens).forEach(s=>s.classList.remove('active'));
+  screens[name].classList.add('active');
+}
+
+let current = null;
+let score = 0, total = 0;
+let history = []; // {options, answer, chosen, correct}
+let timeLeft = 180;
+const ROUND_SECONDS = 180;
+let timerId = null;
+let advanceTimer = null;
+let answered = false;
+let lastCorrect = null;
+
+function fmtTime(s){
+  const m=Math.floor(s/60), r=s%60;
+  return `${m}:${String(r).padStart(2,'0')}`;
+}
+
+function updateHud(){
+  el('fo-scoreText').textContent = `${score} correct / ${total}`;
+  el('fo-timerText').textContent = fmtTime(timeLeft);
+  const pct = Math.min(100, Math.round(((ROUND_SECONDS-timeLeft)/ROUND_SECONDS)*100));
+  el('fo-progressFill').style.width = pct+'%';
+}
+
+function startTimer(){
+  timerId = setInterval(()=>{
+    timeLeft--;
+    updateHud();
+    if(timeLeft<=0){
+      clearInterval(timerId);
+      finishRound();
+    }
+  },1000);
+}
+
+function nextRound(){
+  current = generateItem();
+  answered = false;
+
+  const box = el('fo-optionsBox');
+  box.innerHTML = '';
+  current.options.forEach(n=>{
+    const b = document.createElement('button');
+    b.className='option';
+    b.textContent = n;
+    b.addEventListener('click', ()=>selectOption(b, n));
+    box.appendChild(b);
+  });
+  showScreen('quiz');
+
+  const face = el('fo-quizFace');
+  face.classList.remove('glow-correct','glow-incorrect');
+  if(lastCorrect !== null){
+    face.classList.add(lastCorrect ? 'glow-correct' : 'glow-incorrect');
+    setTimeout(()=>{ face.classList.remove('glow-correct','glow-incorrect'); }, 500);
+    lastCorrect = null;
+  }
+}
+
+function selectOption(btn, n){
+  if(answered) return;
+  answered = true;
+  total++;
+  const correct = n === current.answer;
+  if(correct) score++;
+
+  history.push({options:current.options, chosen:n, answer:current.answer, correct});
+
+  [...el('fo-optionsBox').children].forEach(b=>{ b.disabled = true; });
+  el('fo-quizFace').classList.add(correct ? 'glow-correct' : 'glow-incorrect');
+  lastCorrect = correct;
+
+  updateHud();
+  if(timeLeft>0){
+    advanceTimer = setTimeout(()=>{ if(timeLeft>0) nextRound(); }, 500);
+  }
+}
+
+function finishRound(){
+  clearInterval(timerId);
+  saveResult();
+  el('fo-statusRow').style.display='none';
+  el('fo-endEarly').style.display='none';
+
+  const pct = total ? Math.round((score/total)*100) : 0;
+  el('fo-ringPct').textContent = pct+'%';
+  el('fo-scoreRing').style.setProperty('--pct', pct);
+  el('fo-reportHeadline').textContent = total ? `${score} of ${total} correct.` : `No questions attempted.`;
+  el('fo-reportSub').textContent = total
+    ? (pct>=80 ? "Strong run. The misses below are worth a second look." : "Review the missed questions below, then run it again.")
+    : "Hit start and answer a few before the clock runs out.";
+
+  const list = el('fo-reviewList');
+  list.innerHTML = '';
+  const missed = history.filter(h=>!h.correct);
+  if(missed.length===0){
+    list.innerHTML = `<div class="empty-note">${total? "No misses — clean test." : "Nothing to review yet."}</div>`;
+  } else {
+    missed.forEach(h=>{
+      const item = document.createElement('div');
+      item.className='review-item';
+      item.innerHTML = `
+        <div class="nums">${h.options.map(n=>`<span>${n}</span>`).join('')}</div>
+        <div class="ans"><span class="you">You said: ${h.chosen}</span><span class="correct-ans">Correct: ${h.answer}</span></div>`;
+      list.appendChild(item);
+    });
+  }
+
+  showScreen('report');
+}
+
+el('fo-startBtn').addEventListener('click', ()=>{
+  score=0; total=0; history=[]; timeLeft=ROUND_SECONDS;
+  el('fo-statusRow').style.display='flex';
+  el('fo-endEarly').style.display='inline-block';
+  updateHud();
+  startTimer();
+  nextRound();
+});
+
+el('fo-restartBtn').addEventListener('click', ()=>{ showScreen('start'); });
+el('fo-endEarly').addEventListener('click', ()=>{ if(timerId) finishRound(); });
+
+
+window.__stop_fo = function(){ if(timerId){ clearInterval(timerId); timerId=null; } if(advanceTimer){ clearTimeout(advanceTimer); advanceTimer=null; } };
+window.__reset_fo = function(){ window.__stop_fo(); showScreen('start'); el('fo-statusRow').style.display='none'; el('fo-endEarly').style.display='none'; };
+})();
+(function(){
+
+const rnd = n => Math.floor(Math.random()*n);
+const pick = arr => arr[rnd(arr.length)];
+/* The official example booklet shows 2-4 paired boxes per question (not
+   always exactly 2) -- varying the count adds real variety instead of
+   every question looking like the same fixed layout. */
+const BOX_COUNTS = [2, 3, 4];
+/* Finer-grained angles on purpose -- a clean 90/180/270 turn is too easy
+   to eyeball as "just rotated" at a glance. Off-axis angles force actual
+   mental rotation instead of pattern-matching the transform. */
+const ROTATIONS = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330];
+
+/* Only letters that visually change under a horizontal mirror flip.
+   Letters like A/H/I/M/O/T/U/V/W/X/Y look identical mirrored, which
+   would make a "mirrored -> not a match" box look exactly like a match
+   -- so they're excluded to keep the generated ground truth and the
+   rendered picture in agreement. */
+const LETTERS = ['B','C','D','E','F','G','J','K','L','N','P','Q','R','S','Z'];
+
+function pickLetter(){
+  return LETTERS[rnd(LETTERS.length)];
+}
+
+/* ---------------- Item generator ----------------
+   The verdict is decided FIRST, then the box is rendered to match it --
+   never the other way around. The letter is ALWAYS the same top and
+   bottom -- the only question is how the top copy got there: a pure
+   rotation (isMatch) or a mirror flip, optionally also rotated
+   (not a match). Never a genuinely different letter -- that would make
+   this "spot the different letter," not spatial visualization. */
+function generateBox(){
+  const letter = pickLetter();
+  const isMatch = Math.random() < 0.5;
+  const rotation = ROTATIONS[rnd(ROTATIONS.length)];
+  return {bottomLetter: letter, topLetter: letter, mirrored: !isMatch, rotation, isMatch};
+}
+
+function generateItem(){
+  const count = pick(BOX_COUNTS);
+  const boxes = Array.from({length: count}, generateBox);
+  const answer = boxes.filter(b=>b.isMatch).length;
+  return {boxes, answer};
+}
+
+function glyphTransform(b){
+  const parts = [];
+  if(b.rotation) parts.push(`rotate(${b.rotation}deg)`);
+  if(b.mirrored) parts.push('scaleX(-1)');
+  return parts.join(' ');
+}
+
+const TEST_NAME = 'True Turn';
+const RESULTS_KEY = 'giaPracticeResults';
+function saveResult(){
+  if(total===0) return;
+  try{
+    const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100)});
+    while(arr.length>200) arr.shift();
+    localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
+  }catch(e){ /* localStorage unavailable -- fail silently */ }
+}
+
+/* ---------------- App state & UI wiring ---------------- */
+const el = id=>document.getElementById(id);
+const screens = { start: el('tt-start'), quiz: el('tt-quizScreen'), report: el('tt-report') };
+function showScreen(name){
+  Object.values(screens).forEach(s=>s.classList.remove('active'));
+  screens[name].classList.add('active');
+}
+
+let current = null;
+let score = 0, total = 0;
+let history = []; // {boxes, answer, chosen, correct}
+let timeLeft = 180;
+const ROUND_SECONDS = 180;
+let timerId = null;
+let advanceTimer = null;
+let answered = false;
+let lastCorrect = null;
+
+function fmtTime(s){
+  const m=Math.floor(s/60), r=s%60;
+  return `${m}:${String(r).padStart(2,'0')}`;
+}
+
+function updateHud(){
+  el('tt-scoreText').textContent = `${score} correct / ${total}`;
+  el('tt-timerText').textContent = fmtTime(timeLeft);
+  const pct = Math.min(100, Math.round(((ROUND_SECONDS-timeLeft)/ROUND_SECONDS)*100));
+  el('tt-progressFill').style.width = pct+'%';
+}
+
+function startTimer(){
+  timerId = setInterval(()=>{
+    timeLeft--;
+    updateHud();
+    if(timeLeft<=0){
+      clearInterval(timerId);
+      finishRound();
+    }
+  },1000);
+}
+
+function renderBoxes(containerId, boxes){
+  const c = el(containerId);
+  c.innerHTML = '';
+  boxes.forEach(b=>{
+    const div = document.createElement('div');
+    div.className = 'letter-box';
+    div.innerHTML = `<span class="glyph" style="transform:${glyphTransform(b)};">${b.topLetter}</span><span class="glyph">${b.bottomLetter}</span>`;
+    c.appendChild(div);
+  });
+}
+
+function nextRound(){
+  current = generateItem();
+  answered = false;
+  renderBoxes('tt-boxesRow', current.boxes);
+
+  const box = el('tt-optionsBox');
+  box.innerHTML = '';
+  for(let n=0; n<=current.boxes.length; n++){
+    const b = document.createElement('button');
+    b.className='option';
+    b.textContent = n;
+    b.addEventListener('click', ()=>selectOption(b, n));
+    box.appendChild(b);
+  }
+  showScreen('quiz');
+
+  const face = el('tt-quizFace');
+  face.classList.remove('glow-correct','glow-incorrect');
+  if(lastCorrect !== null){
+    face.classList.add(lastCorrect ? 'glow-correct' : 'glow-incorrect');
+    setTimeout(()=>{ face.classList.remove('glow-correct','glow-incorrect'); }, 500);
+    lastCorrect = null;
+  }
+}
+
+function selectOption(btn, n){
+  if(answered) return;
+  answered = true;
+  total++;
+  const correct = n === current.answer;
+  if(correct) score++;
+
+  history.push({boxes:current.boxes, chosen:n, answer:current.answer, correct});
+
+  [...el('tt-optionsBox').children].forEach(b=>{ b.disabled = true; });
+  el('tt-quizFace').classList.add(correct ? 'glow-correct' : 'glow-incorrect');
+  lastCorrect = correct;
+
+  updateHud();
+  if(timeLeft>0){
+    advanceTimer = setTimeout(()=>{ if(timeLeft>0) nextRound(); }, 500);
+  }
+}
+
+function finishRound(){
+  clearInterval(timerId);
+  saveResult();
+  el('tt-statusRow').style.display='none';
+  el('tt-endEarly').style.display='none';
+
+  const pct = total ? Math.round((score/total)*100) : 0;
+  el('tt-ringPct').textContent = pct+'%';
+  el('tt-scoreRing').style.setProperty('--pct', pct);
+  el('tt-reportHeadline').textContent = total ? `${score} of ${total} correct.` : `No questions attempted.`;
+  el('tt-reportSub').textContent = total
+    ? (pct>=80 ? "Strong run. The misses below are worth a second look." : "Review the missed questions below, then run it again.")
+    : "Hit start and answer a few before the clock runs out.";
+
+  const list = el('tt-reviewList');
+  list.innerHTML = '';
+  const missed = history.filter(h=>!h.correct);
+  if(missed.length===0){
+    list.innerHTML = `<div class="empty-note">${total? "No misses — clean test." : "Nothing to review yet."}</div>`;
+  } else {
+    missed.forEach(h=>{
+      const item = document.createElement('div');
+      item.className='review-item';
+      const miniBoxes = h.boxes.map(b=>`<div class="mini-box"><span class="glyph" style="transform:${glyphTransform(b)};">${b.topLetter}</span><span class="glyph">${b.bottomLetter}</span></div>`).join('');
+      item.innerHTML = `
+        <div class="mini-boxes">${miniBoxes}</div>
+        <div class="ans"><span class="you">You said: ${h.chosen}</span><span class="correct-ans">Correct: ${h.answer}</span></div>`;
+      list.appendChild(item);
+    });
+  }
+
+  showScreen('report');
+}
+
+el('tt-startBtn').addEventListener('click', ()=>{
+  score=0; total=0; history=[]; timeLeft=ROUND_SECONDS;
+  el('tt-statusRow').style.display='flex';
+  el('tt-endEarly').style.display='inline-block';
+  updateHud();
+  startTimer();
+  nextRound();
+});
+
+el('tt-restartBtn').addEventListener('click', ()=>{ showScreen('start'); });
+el('tt-endEarly').addEventListener('click', ()=>{ if(timerId) finishRound(); });
+
+
+window.__stop_tt = function(){ if(timerId){ clearInterval(timerId); timerId=null; } if(advanceTimer){ clearTimeout(advanceTimer); advanceTimer=null; } };
+window.__reset_tt = function(){ window.__stop_tt(); showScreen('start'); el('tt-statusRow').style.display='none'; el('tt-endEarly').style.display='none'; };
+})();
+(function(){
+
+const rnd = n => Math.floor(Math.random()*n);
+const pick = arr => arr[rnd(arr.length)];
+
+/* ---------------- Word data ----------------
+   Same closed-world approach as the other tests: the odd word is always
+   drawn from a pool that's provably disjoint from whatever relation is
+   active, so it can never accidentally turn out to be related too. */
+
+const CATEGORIES = {
+  animals: ["Lion","Tiger","Elephant","Cheetah","Zebra","Giraffe","Monkey","Bear","Wolf","Rabbit","Horse","Dolphin"],
+  fruits: ["Apple","Banana","Mango","Grape","Peach","Pear","Lemon","Cherry","Melon","Papaya"],
+  colors: ["Red","Blue","Green","Yellow","Purple","Pink","Brown","Black","White"],
+  vehicles: ["Car","Truck","Bicycle","Motorcycle","Bus","Train","Boat","Airplane","Van","Scooter"],
+  furniture: ["Chair","Table","Sofa","Bed","Desk","Shelf","Wardrobe","Stool","Bench","Cabinet"],
+  weather: ["Rain","Snow","Wind","Storm","Fog","Sunshine","Hail","Cloud","Thunder","Drizzle"],
+  bodyParts: ["Hand","Foot","Elbow","Knee","Shoulder","Wrist","Ankle","Finger","Thumb","Neck"],
+  tools: ["Hammer","Wrench","Screwdriver","Saw","Drill","Pliers","Chisel","Axe","Nail","Bolt"],
+  emotions: ["Happy","Sad","Angry","Excited","Nervous","Calm","Proud","Jealous","Bored","Curious"],
+  professions: ["Doctor","Teacher","Lawyer","Engineer","Nurse","Chef","Pilot","Farmer","Artist","Plumber"],
+  sports: ["Football","Basketball","Tennis","Cricket","Golf","Swimming","Boxing","Cycling","Running","Hockey"],
+  kitchen: ["Spoon","Fork","Knife","Plate","Cup","Bowl","Pan","Pot","Kettle","Tray"]
+};
+
+const SYNONYM_PAIRS = [
+  ["Happy","Glad"],["Sad","Unhappy"],["Big","Large"],["Small","Tiny"],["Fast","Quick"],
+  ["Angry","Mad"],["Scared","Afraid"],["Smart","Clever"],["Tired","Sleepy"],["Begin","Start"],
+  ["End","Finish"],["Buy","Purchase"],["Rich","Wealthy"],["Easy","Simple"],["Hard","Difficult"],
+  ["Funny","Humorous"],["Quiet","Silent"],["Loud","Noisy"],["Pretty","Beautiful"],["Strong","Powerful"],
+  ["Old","Elderly"],["Clean","Tidy"],["Halt","Stop"],["Below","Under"]
+];
+
+const ANTONYM_PAIRS = [
+  ["Hot","Cold"],["Up","Down"],["Big","Small"],["Fast","Slow"],["Happy","Sad"],
+  ["Day","Night"],["Wet","Dry"],["Open","Closed"],["Full","Empty"],["Heavy","Light"],
+  ["True","False"],["Buy","Sell"],["Push","Pull"],["Rich","Poor"],["Old","New"],
+  ["Early","Late"],["Win","Lose"],["Love","Hate"],["Start","Stop"],["Give","Take"],
+  ["Above","Below"],["Enter","Exit"],["Smooth","Rough"]
+];
+
+/* A handful of extra concrete nouns, disjoint from everything above, just
+   to round out the pool a little further. */
+const ODD_POOL = ["Umbrella","Guitar","Mountain","River","Pencil","Window","Garden","Bridge",
+  "Coffee","Library","Journey","Whisper","Shadow","Diamond","Volcano","Puzzle","Ladder",
+  "Balloon","Pyramid","Compass","Lantern","Anchor","Meadow","Feather"];
+
+/* Personality/trait adjectives -- disjoint from every category and pair. */
+const ADJECTIVE_ODD_POOL = ["Intelligent","Talkative","Confident","Stubborn","Cheerful",
+  "Ambitious","Modest","Honest","Generous","Polite"];
+
+/* The odd word is drawn from this single large pool (every category's
+   words, pooled together, plus the two filler lists above -- ~155 words
+   total) rather than a small dedicated "odd word" list. With a small
+   fixed pool, the same handful of words (e.g. always "Coffee" or
+   "Compass") end up being the odd one out over and over, and a test-taker
+   starts recognising the *list* instead of reasoning about meaning. Here
+   almost every word doubles as a real category member in some questions
+   and a decoy in others, so nothing is reliably "the odd word". */
+const ALL_CATEGORY_WORDS = Object.values(CATEGORIES).flat();
+const MEGA_ODD_POOL = [...new Set([...ALL_CATEGORY_WORDS, ...ODD_POOL, ...ADJECTIVE_ODD_POOL])];
+const EMOTION_WORDS = new Set(CATEGORIES.emotions);
+
+function generateItem(){
+  const r = Math.random();
+  let wordA, wordB, excludeSet;
+
+  if(r < 0.5){
+    const categoryKey = Object.keys(CATEGORIES)[rnd(Object.keys(CATEGORIES).length)];
+    const list = CATEGORIES[categoryKey];
+    const idx1 = rnd(list.length);
+    let idx2; do{ idx2 = rnd(list.length); }while(idx2===idx1);
+    wordA = list[idx1]; wordB = list[idx2];
+    excludeSet = new Set(list); // exclude the WHOLE category, not just these two
+  } else if(r < 0.75){
+    [wordA, wordB] = pick(SYNONYM_PAIRS);
+    // also exclude every emotion word: most synonym/antonym pairs here are
+    // feeling-adjectives (Happy/Glad, Angry/Mad, ...), so an emotion-category
+    // decoy like "Excited" could read as a third related word instead of a
+    // clean odd one out.
+    excludeSet = new Set([wordA, wordB, ...EMOTION_WORDS]);
+  } else {
+    [wordA, wordB] = pick(ANTONYM_PAIRS);
+    excludeSet = new Set([wordA, wordB, ...EMOTION_WORDS]);
+  }
+
+  const candidates = MEGA_ODD_POOL.filter(w => !excludeSet.has(w));
+  const oddWord = pick(candidates);
+
+  const options = [wordA, wordB, oddWord];
+  for(let i=options.length-1;i>0;i--){ const j=rnd(i+1); [options[i],options[j]]=[options[j],options[i]]; }
+
+  return {options, answer: oddWord};
+}
+
+const TEST_NAME = 'Odd One Out';
+const RESULTS_KEY = 'giaPracticeResults';
+function saveResult(){
+  if(total===0) return;
+  try{
+    const arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
+    arr.push({test:TEST_NAME, date:new Date().toISOString(), score, total, pct:Math.round((score/total)*100)});
+    while(arr.length>200) arr.shift();
+    localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
+  }catch(e){ /* localStorage unavailable -- fail silently */ }
+}
+
+/* ---------------- App state & UI wiring ---------------- */
+const el = id=>document.getElementById(id);
+const screens = { start: el('oo-start'), quiz: el('oo-quizScreen'), report: el('oo-report') };
+function showScreen(name){
+  Object.values(screens).forEach(s=>s.classList.remove('active'));
+  screens[name].classList.add('active');
+}
+
+let current = null;
+let score = 0, total = 0;
+let history = []; // {options, answer, chosen, correct}
+let timeLeft = 180;
+const ROUND_SECONDS = 180;
+let timerId = null;
+let advanceTimer = null;
+let answered = false;
+let lastCorrect = null;
+
+function fmtTime(s){
+  const m=Math.floor(s/60), r=s%60;
+  return `${m}:${String(r).padStart(2,'0')}`;
+}
+
+function updateHud(){
+  el('oo-scoreText').textContent = `${score} correct / ${total}`;
+  el('oo-timerText').textContent = fmtTime(timeLeft);
+  const pct = Math.min(100, Math.round(((ROUND_SECONDS-timeLeft)/ROUND_SECONDS)*100));
+  el('oo-progressFill').style.width = pct+'%';
+}
+
+function startTimer(){
+  timerId = setInterval(()=>{
+    timeLeft--;
+    updateHud();
+    if(timeLeft<=0){
+      clearInterval(timerId);
+      finishRound();
+    }
+  },1000);
+}
+
+function nextRound(){
+  current = generateItem();
+  answered = false;
+
+  const box = el('oo-optionsBox');
+  box.innerHTML = '';
+  current.options.forEach(w=>{
+    const b = document.createElement('button');
+    b.className='option';
+    b.textContent = w;
+    b.addEventListener('click', ()=>selectOption(b, w));
+    box.appendChild(b);
+  });
+  showScreen('quiz');
+
+  const face = el('oo-quizFace');
+  face.classList.remove('glow-correct','glow-incorrect');
+  if(lastCorrect !== null){
+    face.classList.add(lastCorrect ? 'glow-correct' : 'glow-incorrect');
+    setTimeout(()=>{ face.classList.remove('glow-correct','glow-incorrect'); }, 500);
+    lastCorrect = null;
+  }
+}
+
+function selectOption(btn, w){
+  if(answered) return;
+  answered = true;
+  total++;
+  const correct = w === current.answer;
+  if(correct) score++;
+
+  history.push({options:current.options, chosen:w, answer:current.answer, correct});
+
+  [...el('oo-optionsBox').children].forEach(b=>{ b.disabled = true; });
+  el('oo-quizFace').classList.add(correct ? 'glow-correct' : 'glow-incorrect');
+  lastCorrect = correct;
+
+  updateHud();
+  if(timeLeft>0){
+    advanceTimer = setTimeout(()=>{ if(timeLeft>0) nextRound(); }, 500);
+  }
+}
+
+function finishRound(){
+  clearInterval(timerId);
+  saveResult();
+  el('oo-statusRow').style.display='none';
+  el('oo-endEarly').style.display='none';
+
+  const pct = total ? Math.round((score/total)*100) : 0;
+  el('oo-ringPct').textContent = pct+'%';
+  el('oo-scoreRing').style.setProperty('--pct', pct);
+  el('oo-reportHeadline').textContent = total ? `${score} of ${total} correct.` : `No questions attempted.`;
+  el('oo-reportSub').textContent = total
+    ? (pct>=80 ? "Strong run. The misses below are worth a second look." : "Review the missed questions below, then run it again.")
+    : "Hit start and answer a few before the clock runs out.";
+
+  const list = el('oo-reviewList');
+  list.innerHTML = '';
+  const missed = history.filter(h=>!h.correct);
+  if(missed.length===0){
+    list.innerHTML = `<div class="empty-note">${total? "No misses — clean test." : "Nothing to review yet."}</div>`;
+  } else {
+    missed.forEach(h=>{
+      const item = document.createElement('div');
+      item.className='review-item';
+      item.innerHTML = `
+        <div class="words">${h.options.map(w=> w===h.answer ? `<b>${w}</b>` : w).join(' · ')}</div>
+        <div class="ans"><span class="you">You said: ${h.chosen}</span><span class="correct-ans">Correct: ${h.answer}</span></div>`;
+      list.appendChild(item);
+    });
+  }
+
+  showScreen('report');
+}
+
+el('oo-startBtn').addEventListener('click', ()=>{
+  score=0; total=0; history=[]; timeLeft=ROUND_SECONDS;
+  el('oo-statusRow').style.display='flex';
+  el('oo-endEarly').style.display='inline-block';
+  updateHud();
+  startTimer();
+  nextRound();
+});
+
+el('oo-restartBtn').addEventListener('click', ()=>{ showScreen('start'); });
+el('oo-endEarly').addEventListener('click', ()=>{ if(timerId) finishRound(); });
+
+
+window.__stop_oo = function(){ if(timerId){ clearInterval(timerId); timerId=null; } if(advanceTimer){ clearTimeout(advanceTimer); advanceTimer=null; } };
+window.__reset_oo = function(){ window.__stop_oo(); showScreen('start'); el('oo-statusRow').style.display='none'; el('oo-endEarly').style.display='none'; };
+})();
+(function(){
+
+const RESULTS_KEY = 'giaPracticeResults';
+
+function loadResults(){
+  try{
+    return JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]');
+  }catch(e){
+    return [];
+  }
+}
+
+function fmtDate(iso){
+  const d = new Date(iso);
+  if(isNaN(d)) return iso;
+  return d.toLocaleDateString(undefined,{month:'short',day:'numeric'}) + ' · ' +
+         d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'});
+}
+
+function render(){
+  const results = loadResults();
+  const content = document.getElementById('hist-content');
+  const clearBtn = document.getElementById('hist-clearBtn');
+
+  if(results.length === 0){
+    content.innerHTML = '<div class="empty-note">No tests taken yet. Finish a 3-minute test and it\'ll show up here.</div>';
+    clearBtn.style.display = 'none';
+    return;
+  }
+
+  clearBtn.style.display = 'inline-block';
+
+  // per-test summary: attempts count + best accuracy, in first-seen order
+  const byTest = {};
+  const order = [];
+  results.forEach(r=>{
+    if(!byTest[r.test]){ byTest[r.test] = {attempts:0, best:0}; order.push(r.test); }
+    byTest[r.test].attempts++;
+    byTest[r.test].best = Math.max(byTest[r.test].best, r.pct);
+  });
+
+  const summaryRows = order.map(name => `
+    <div class="summary-row">
+      <div class="name">${name}</div>
+      <div class="stat">${byTest[name].attempts} attempt${byTest[name].attempts===1?'':'s'}</div>
+      <div class="stat">best <b>${byTest[name].best}%</b></div>
+    </div>`).join('');
+
+  const entries = [...results].reverse().map(r => `
+    <div class="entry">
+      <div class="info">
+        <div class="test-name">${r.test}</div>
+        <div class="date">${fmtDate(r.date)}</div>
+      </div>
+      <div class="score">
+        <div class="frac">${r.score} / ${r.total}</div>
+        <div class="pct">${r.pct}%</div>
+      </div>
+    </div>`).join('');
+
+  content.innerHTML = `
+    <div class="section-title">By test</div>
+    <div class="summary-grid">${summaryRows}</div>
+    <div class="section-title">All attempts</div>
+    <div class="entry-list">${entries}</div>
+  `;
+}
+
+document.getElementById('hist-clearBtn').addEventListener('click', ()=>{
+  if(confirm('Clear all saved results? This can\'t be undone.')){
+    try{ localStorage.removeItem(RESULTS_KEY); }catch(e){}
+    render();
+  }
+});
+
+render();
+
+
+window.__reset_hist = render;
+})();
+</script>
+</body>
+</html>
