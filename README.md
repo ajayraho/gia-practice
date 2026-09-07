@@ -62,7 +62,7 @@ Every completed run - a single test or a full-length one - is saved locally and 
 - **Hover any point** for the exact numbers on that attempt (correct/incorrect count, and the per-section scores for a Full Test run).
 - Hand-rolled as plain SVG - no charting library - so the whole app stays dependency-free and works offline.
 
-Clicking **View detailed report** in that hover popup opens every question from the attempt in a scrollable, filterable list - each card colored light green or light red for correct/incorrect, with All / Correct / Incorrect filter buttons at the bottom. A Full Test report tags each question with the section it came from.
+Clicking **View detailed report** in that hover popup opens every question from the attempt in a scrollable, filterable list - each card colored light green or light red for correct/incorrect, with All / Correct / Incorrect filter buttons at the bottom. A Full Test report tags each question with the section it came from. A delete button next to close removes that one attempt from history, with a confirmation prompt first.
 
 <img src="assets/fulltest-report-screenshot.png" alt="gia-practice detailed question-by-question report for a Full Test run" width="720" />
 

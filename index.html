@@ -1210,6 +1210,7 @@ body{margin:0;min-height:100vh;}
 }
 #view-history .report-title{font-size:16.5px;font-weight:700;letter-spacing:-.01em;}
 #view-history .report-sub{font-size:12.5px;color:var(--muted);margin-top:3px;font-variant-numeric:tabular-nums;}
+#view-history .report-head-actions{flex:none;display:flex;gap:8px;}
 #view-history .report-close{
   flex:none;
   width:30px;height:30px;
@@ -1223,6 +1224,19 @@ body{margin:0;min-height:100vh;}
   display:flex;align-items:center;justify-content:center;
 }
 #view-history .report-close:hover{border-color:var(--border-strong);color:var(--ink);}
+#view-history .report-delete{
+  flex:none;
+  width:30px;height:30px;
+  border:1px solid rgba(92,32,32,.35);
+  border-radius:8px;
+  background:none;
+  font-size:14px;
+  line-height:1;
+  cursor:pointer;
+  color:var(--line-incorrect);
+  display:flex;align-items:center;justify-content:center;
+}
+#view-history .report-delete:hover{background:rgba(92,32,32,.08);border-color:var(--line-incorrect);}
 
 #view-history .report-list{
   overflow-y:auto;
@@ -1693,7 +1707,10 @@ body{margin:0;min-height:100vh;}
         <div class="report-title" id="hist-reportTitle"></div>
         <div class="report-sub" id="hist-reportSub"></div>
       </div>
-      <button class="report-close" id="hist-reportCloseBtn" aria-label="Close" onclick="closeReportModal()">&times;</button>
+      <div class="report-head-actions">
+        <button class="report-delete" id="hist-reportDeleteBtn" aria-label="Delete this attempt" onclick="deleteReportEntry()">&#128465;</button>
+        <button class="report-close" id="hist-reportCloseBtn" aria-label="Close" onclick="closeReportModal()">&times;</button>
+      </div>
     </div>
     <div class="report-list" id="hist-reportList"></div>
     <div class="report-filters">
@@ -3118,6 +3135,7 @@ function positionTip(evt, tip){
 let reportQuestions = [];
 let reportDefaultTest = '';
 let reportFilter = 'all';
+let currentReportPoint = null;
 
 function glyphTransform(b){
   const parts = [];
@@ -3176,6 +3194,7 @@ function openReportModal(point){
   reportQuestions = Array.isArray(point.questions) ? point.questions : [];
   reportDefaultTest = point.testName;
   reportFilter = 'all';
+  currentReportPoint = point;
   document.getElementById('hist-reportTitle').textContent = point.testName;
   document.getElementById('hist-reportSub').textContent = fmtDate(point.date) + ' · ' + point.correct + '/' + point.total + ' correct';
   document.querySelectorAll('.rf-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-filter') === 'all'));
@@ -3192,6 +3211,23 @@ function openReportFromTip(evt){
 
 function closeReportModal(){
   document.getElementById('hist-reportOverlay').style.display = 'none';
+  currentReportPoint = null;
+}
+
+function deleteReportEntry(){
+  if(!currentReportPoint) return;
+  if(!confirm('Delete this attempt from history? This can\'t be undone.')) return;
+  const point = currentReportPoint;
+  try{
+    const arr = loadResults();
+    const idx = arr.findIndex(r => r.date === point.date && r.test === point.testName);
+    if(idx !== -1){
+      arr.splice(idx, 1);
+      localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
+    }
+  }catch(e){ /* localStorage unavailable -- fail silently */ }
+  closeReportModal();
+  render();
 }
 
 function setReportFilter(f){
@@ -3213,6 +3249,7 @@ window.cancelHideTip = cancelHideTip;
 window.hideTip = hideTip;
 window.openReportFromTip = openReportFromTip;
 window.closeReportModal = closeReportModal;
+window.deleteReportEntry = deleteReportEntry;
 window.setReportFilter = setReportFilter;
 
 function chartCard(name, runs){
