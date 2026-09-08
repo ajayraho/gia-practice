@@ -2553,12 +2553,27 @@ const BOX_COUNTS = [2, 3, 4];
    mental rotation instead of pattern-matching the transform. */
 const ROTATIONS = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330];
 
-/* Only letters that visually change under a horizontal mirror flip.
-   Letters like A/H/I/M/O/T/U/V/W/X/Y look identical mirrored, which
-   would make a "mirrored -> not a match" box look exactly like a match
-   -- so they're excluded to keep the generated ground truth and the
-   rendered picture in agreement. */
-const LETTERS = ['B','C','D','E','F','G','J','K','L','N','P','Q','R','S','Z'];
+/* Only letters with NO line of symmetry at all -- genuinely chiral
+   shapes. Two separate symmetry cases both had to be ruled out, not
+   just one:
+   - A/H/I/M/O/T/U/V/W/X/Y are symmetric about a VERTICAL axis, so a
+     horizontal mirror flip leaves them looking completely unchanged --
+     a "mirrored -> not a match" box would render identically to a
+     genuine match.
+   - B/C/D/E/K are symmetric about a HORIZONTAL axis instead (top half
+     mirrors bottom half). For those, mirroring is mathematically the
+     same as rotating 180deg -- since 180 is always one of our sampled
+     angles, a mirrored copy of one of these can render pixel-identical
+     to a plain rotated copy, making a genuine mismatch look like a
+     match (e.g. a mirrored "C" at one angle vs. a plain "C" rotated
+     180deg further looks exactly the same).
+   Both groups are excluded so the generated ground truth and the
+   rendered picture always agree. What's left (F/G/J/L/N/P/Q/R/S/Z) has
+   no reflection symmetry of either kind -- N/S/Z have 180deg
+   ROTATIONAL symmetry (look the same at 0 and 180deg), but that's
+   harmless here since it never makes a mirrored copy coincide with a
+   plain rotated one. */
+const LETTERS = ['F','G','J','L','N','P','Q','R','S','Z'];
 
 function pickLetter(){
   return LETTERS[rnd(LETTERS.length)];
