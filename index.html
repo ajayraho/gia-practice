@@ -2566,15 +2566,38 @@ function pickLetter(){
 
 /* ---------------- Item generator ----------------
    The verdict is decided FIRST, then the box is rendered to match it - never the other way around. The letter is ALWAYS the same top and
-   bottom -- the only question is how the top copy got there: a pure
-   rotation (isMatch) or a mirror flip, optionally also rotated
+   bottom -- the only question is whether the two copies share the same
+   handedness (isMatch) or one of them is mirrored relative to the other
    (not a match). Never a genuinely different letter -- that would make
-   this "spot the different letter," not spatial visualization. */
+   this "spot the different letter," not spatial visualization.
+   Which copy (top or bottom) carries the mirror -- and which copy looks
+   "plain" -- is randomized independently each time, instead of the
+   bottom always being the untouched reference copy. Rotation is also
+   independent per copy, since rotation alone never affects a match. The
+   one thing never allowed is BOTH copies coming out completely
+   untouched (no mirror, 0deg rotation each) -- that leaves nothing to
+   actually turn, which defeats the point of the test. */
 function generateBox(){
   const letter = pickLetter();
   const isMatch = Math.random() < 0.5;
-  const rotation = ROTATIONS[rnd(ROTATIONS.length)];
-  return {bottomLetter: letter, topLetter: letter, mirrored: !isMatch, rotation, isMatch};
+  let topMirrored, bottomMirrored;
+  if(isMatch){
+    // Same handedness both ways -- plain/plain or mirrored/mirrored are both matches.
+    const bothMirrored = Math.random() < 0.5;
+    topMirrored = bothMirrored;
+    bottomMirrored = bothMirrored;
+  } else {
+    // Different handedness -- randomize which copy is the mirrored one.
+    topMirrored = Math.random() < 0.5;
+    bottomMirrored = !topMirrored;
+  }
+  let topRotation = ROTATIONS[rnd(ROTATIONS.length)];
+  let bottomRotation = ROTATIONS[rnd(ROTATIONS.length)];
+  if(!topMirrored && !bottomMirrored && topRotation === 0 && bottomRotation === 0){
+    // Both copies would look identical and completely untouched -- force a turn.
+    topRotation = ROTATIONS[1 + rnd(ROTATIONS.length - 1)];
+  }
+  return {topLetter: letter, bottomLetter: letter, topRotation, bottomRotation, topMirrored, bottomMirrored, isMatch};
 }
 
 function generateItem(){
@@ -2584,10 +2607,10 @@ function generateItem(){
   return {boxes, answer};
 }
 
-function glyphTransform(b){
+function glyphTransform(rotation, mirrored){
   const parts = [];
-  if(b.rotation) parts.push(`rotate(${b.rotation}deg)`);
-  if(b.mirrored) parts.push('scaleX(-1)');
+  if(rotation) parts.push(`rotate(${rotation}deg)`);
+  if(mirrored) parts.push('scaleX(-1)');
   return parts.join(' ');
 }
 
@@ -2651,7 +2674,7 @@ function renderBoxes(containerId, boxes){
   boxes.forEach(b=>{
     const div = document.createElement('div');
     div.className = 'letter-box';
-    div.innerHTML = `<span class="glyph" style="transform:${glyphTransform(b)};">${b.topLetter}</span><span class="glyph">${b.bottomLetter}</span>`;
+    div.innerHTML = `<span class="glyph" style="transform:${glyphTransform(b.topRotation, b.topMirrored)};">${b.topLetter}</span><span class="glyph" style="transform:${glyphTransform(b.bottomRotation, b.bottomMirrored)};">${b.bottomLetter}</span>`;
     c.appendChild(div);
   });
 }
@@ -2723,7 +2746,7 @@ function finishRound(){
     missed.forEach(h=>{
       const item = document.createElement('div');
       item.className='review-item';
-      const miniBoxes = h.boxes.map(b=>`<div class="mini-box"><span class="glyph" style="transform:${glyphTransform(b)};">${b.topLetter}</span><span class="glyph">${b.bottomLetter}</span></div>`).join('');
+      const miniBoxes = h.boxes.map(b=>`<div class="mini-box"><span class="glyph" style="transform:${glyphTransform(b.topRotation, b.topMirrored)};">${b.topLetter}</span><span class="glyph" style="transform:${glyphTransform(b.bottomRotation, b.bottomMirrored)};">${b.bottomLetter}</span></div>`).join('');
       item.innerHTML = `
         <div class="mini-boxes">${miniBoxes}</div>
         <div class="ans"><span class="you">You said: ${h.chosen}</span><span class="correct-ans">Correct: ${h.answer}</span></div>`;
@@ -3179,10 +3202,10 @@ let reportDefaultTest = '';
 let reportFilter = 'all';
 let currentReportPoint = null;
 
-function glyphTransform(b){
+function glyphTransform(rotation, mirrored){
   const parts = [];
-  if(b.rotation) parts.push(`rotate(${b.rotation}deg)`);
-  if(b.mirrored) parts.push('scaleX(-1)');
+  if(rotation) parts.push(`rotate(${rotation}deg)`);
+  if(mirrored) parts.push('scaleX(-1)');
   return parts.join(' ');
 }
 
@@ -3205,7 +3228,7 @@ function renderQuestionBody(testName, q){
       return `<div class="ri-nums">${(q.options || []).map(n => `<span>${n}</span>`).join('')}</div>` + ansRow(q);
     case 'True Turn':
       return `<div class="ri-boxes">${(q.boxes || []).map(b =>
-               `<div class="mini-box"><span class="glyph" style="transform:${glyphTransform(b)};">${escHtml(b.topLetter)}</span><span class="glyph">${escHtml(b.bottomLetter)}</span></div>`
+               `<div class="mini-box"><span class="glyph" style="transform:${glyphTransform(b.topRotation ?? b.rotation, b.topMirrored ?? b.mirrored)};">${escHtml(b.topLetter)}</span><span class="glyph" style="transform:${glyphTransform(b.bottomRotation, b.bottomMirrored)};">${escHtml(b.bottomLetter)}</span></div>`
              ).join('')}</div>` + ansRow(q);
     case 'Odd One Out':
       return `<div class="ri-words">${(q.options || []).map(w => w === q.answer ? `<b>${escHtml(w)}</b>` : escHtml(w)).join(' · ')}</div>` + ansRow(q);
